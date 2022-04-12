@@ -1,0 +1,142 @@
+.episodePage{
+    padding-bottom: 5rem;
+}
+
+.episode_duration{
+    color: rgb(190, 190, 190);
+    text-align: left;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.episode_duration span{
+    margin-left: 2rem;
+}
+
+.lighten{
+    background-color: rgb(17, 17, 17);
+    margin-bottom: 2rem;
+}
+
+.episode_description h1{
+    font-size: 2.5rem;
+    padding-left: 2rem;
+    margin-top: 2rem;
+    color: white;
+}
+
+.episode_description p{
+    font-size: 1.8rem;
+    text-align: left;
+    padding-left: 2rem;
+    margin-top: 4rem;
+    font-weight: 0;
+    color: rgb(148, 148, 148);
+    padding-right: 1rem;
+    margin-bottom: 5rem;
+}
+
+.episode_description a{
+    border: 1px solid white;
+    padding: 1rem 5rem;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    margin-left: 3rem;
+}
+
+.episode_description a:hover{
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+/* ------SHOW PAGE --------- */
+
+
+.showPage{
+    height: 100%;
+}
+
+.show_episodes{
+    width: 65%;
+    height: 100%;
+    padding-left: 3rem;
+}
+
+.show_episodes h1{
+    color: white;
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+}
+
+.show_episode{
+    height: 16rem;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgb(73, 73, 73);
+    padding: 1.6rem 0 1.6rem 1rem;
+    cursor: pointer;
+
+}
+
+.show_episode:hover{
+    background-color:rgb(30, 30, 30) ;
+}
+
+.show_episode_img{
+    height: 100%;
+}
+
+.show_episode_img img{
+    height: 100%;
+    object-fit: contain;
+    border-radius: 1rem;
+}
+
+.show_episode_description{
+    height: 100%;
+    margin-left: 2rem;
+    position: relative;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+.show_episode_description h3{
+    color: white;
+    font-size: 1.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.show_episode_description p{
+    color: rgb(121, 121, 121);
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.show_episode_description h2{
+    position: absolute;
+    bottom: 1rem;
+    color: rgb(121, 121, 121);
+}
+
+.episode_container{
+display: flex;
+height: 100%;
+}
+
+.about_show{
+height: 100%;
+width: 30%;
+margin-left: 5rem;
+}
+
+.about_show h1{
+    margin-bottom: 2rem;
+    color: white;
+    font-size: 2.8rem;
+}
+
+.about_show p{
+    color: rgb(121, 121, 121);
+    font-size: 1.8rem;
+    text-align: left;
+}

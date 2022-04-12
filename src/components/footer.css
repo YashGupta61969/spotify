@@ -1,0 +1,109 @@
+.footer{
+    position: fixed;
+    bottom: 0;
+    background-color: #181818;
+    height: 13%;
+    width: 100%;
+    color: white;
+    display: flex;
+    padding: 0 2rem;
+}
+
+.footer p{
+    font-weight: 100;
+    font-size: 1.3rem;
+}
+
+.footer_left{
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.footer_album_img{
+    width: 5.5rem;
+    height: 5.5rem;
+    background-color: rgb(46, 49, 49);
+    box-shadow: 0 0 5px black;
+}
+
+.footer_album_img img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.footer_song_info{
+    padding: 0 1.5rem;
+}
+
+.footer_song_info p{
+    
+    text-align: left;
+}
+
+.footer_song_info span{
+    margin-right: 1rem;
+    font-size: 1.1rem;
+    color: rgb(167, 167, 167);
+}
+
+.footer_mid{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footer_play{
+    display: flex;
+    align-items: center;
+}
+
+.footer_play_icons{
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.footer_range{
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.footer_range p{
+    margin-left: 1rem;
+}
+
+.footer_range input{
+    width: 100%;
+    cursor: pointer;
+    height: 5px;
+    outline: none;
+    accent-color: #7b9785;
+}
+
+.footer_range input:hover{
+    height: 8px;
+    accent-color: #1DB954;
+}
+
+.footer_right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 30%;
+}
+
+.footer_right_input input{
+    width: 100%;
+    cursor: pointer;
+    height: 5px;
+    outline: none;
+    accent-color: #7b9785;
+}
+
+.footer_right_input input:hover{
+    height: 8px;
+    accent-color: #1DB954;
+}

@@ -1,0 +1,201 @@
+.liked_tracks{
+    width: 100%;
+    height: 100%;
+    background-image:linear-gradient(#003057,35%, black) ;
+    overflow-y: auto;
+    padding-bottom: 5rem;
+}
+
+.playlists{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    /* margin-bottom: 2rem; */
+    padding-top: 10rem;
+    margin-top: -5rem;
+}
+
+.playlists::-webkit-scrollbar{
+    background-color: transparent;
+    width: 14px;
+}
+
+
+.playlists::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background-color: rgb(73, 73, 73);
+}
+
+.liked_tracks::-webkit-scrollbar{
+    background-color: transparent;
+    width: 14px;
+}
+
+
+.liked_tracks::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background-color: rgb(73, 73, 73);
+}
+
+
+.liked_tracks_header{
+    height: 58%;
+    padding: 0 0 3rem 4rem;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+}
+
+.liked_tracks_header_text{
+    margin-left: 2.5rem;
+}
+
+.liked_tracks_header_text p{
+    text-align: left;
+    font-size: 1.5rem;    
+}
+
+.liked_tracks_header_text h1{
+    font-size: 10rem;
+}
+
+.liked_tracks_box{
+    width: 25rem;
+    min-width: 25rem;
+    height: 25rem;
+    background-image: linear-gradient(145deg,rgb(0, 81, 255), rgb(128, 145, 179));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 0 25px black;
+}
+
+.liked_tracks_box img{
+    object-fit: contain;
+    width: 100%;
+}
+
+.play_all_btn_container{
+    padding-left: 2rem;
+}
+
+.play_all_btn{
+    cursor: pointer;
+}
+
+.song_list{
+    color: white;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.150),rgba(0, 0, 0, 0.150));
+}
+
+.song_row{
+    padding-left: 5rem;
+    height: 7rem;
+    display: flex;
+    align-items: center ;
+    margin-top: 1rem;
+}
+
+.song_row:hover{
+    background-color: rgba(255, 255, 255, 0.096);
+}
+
+.song_album_image{
+    width: 5rem;
+    height: 5rem;
+}
+
+.song_album_image img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.song_title{
+    margin-left: 2rem;
+}
+
+.song_title h3{
+    font-size: 1.9rem;
+    cursor: pointer;
+    font-weight: 300;
+    letter-spacing: 0px;
+}
+
+.song_title h3:hover{
+    text-decoration: underline;
+
+}
+.song_title p:hover{
+    text-decoration: underline;
+
+}
+
+.song_title p{
+    font-size: 1.3rem;
+    font-weight: 100;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.liked_tracks_artists{
+    display: flex;
+}
+
+.liked_tracks_artists p{
+    margin-right: 1rem;
+    color: rgb(185, 185, 185);
+    word-spacing: -1px;
+}
+
+
+
+
+@media screen and (max-width:500px) {
+    .liked_tracks{
+        padding-top:2rem;
+        padding-bottom: 10rem;
+    }
+    .liked_tracks::-webkit-scrollbar{
+        display: none;
+    }
+    .liked_tracks_header{
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+    .liked_tracks_box{
+        margin: 0 auto;
+        width: 30rem;
+        min-height: 30rem;
+    }
+    .liked_tracks_header_text{
+        text-align: center;
+        margin: 3rem 0;
+    }
+    .liked_tracks_header_text :nth-child(1){
+        display: none;
+    }
+    .liked_tracks_header_text :nth-child(3){
+        text-align: center;
+        margin-top: 1rem;
+    }
+    .liked_tracks_header_text h1{
+        font-size: 4rem;
+    }
+    .play_all_btn_container{
+        display: none;
+    }
+    .song_list{
+        margin: 0;
+    }
+    .song_row{
+        padding-left: 1.8rem;
+    }
+    .song_list{
+        margin-bottom: 5rem;
+    }
+
+}

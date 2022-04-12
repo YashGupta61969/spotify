@@ -1,0 +1,403 @@
+.search_page{
+    height: 100%;
+    overflow-y: auto;
+    background-color: #121212;
+    padding-bottom: 5rem;
+}
+
+.margin_top{
+    margin-top: 6rem;
+}
+
+.search_page::-webkit-scrollbar{
+    display: none;
+}
+
+.search_top_artists{
+    min-height: 38rem;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0 0 3rem;
+}
+
+.search_result_tracks_column h1{
+    color: white;
+    font-size: 3rem;
+    padding: 2rem 0 ;
+    margin-bottom: 1rem;
+}
+
+.padding_left{
+    padding-left: 3rem;
+}
+
+.sample p{
+    display: flex;
+    width: 100%;
+}
+
+.sample h3{
+    color: white;
+}
+
+.sample span{
+    margin-right: 1rem;
+}
+
+.search_top_artists h1{
+    font-size: 2.6rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.search_top_row{
+    height: 100%;
+    display: flex;
+    overflow-x: scroll;
+    padding-bottom: 1rem;
+    overflow-y: hidden;
+    margin-bottom: 4rem;
+}
+
+.search_top_row::-webkit-scrollbar{
+    background-color: transparent;
+}
+
+.search_top_row::-webkit-scrollbar-thumb{
+    background-color: rgb(53, 53, 53);
+    border-radius: 1rem;
+}
+
+.search_top_card{
+    /* min-width:40rem; */
+    position: relative;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+    margin: 0 1rem;
+    cursor: pointer;
+    height: 100%;
+    border-radius: 2rem;
+    /* padding: 1rem 2rem; */
+}
+
+.search_top_card h1{
+    border-radius: 2rem;
+    /* color: #000000;*/
+    font-size: 3rem; 
+    position: absolute;
+    top: 0;
+    bottom: -1rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 1rem;
+    text-shadow: 0 0 6px black;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.486),rgba(0, 0, 0, 0.479));
+    /* bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%); */
+}
+
+.search_top_card img{
+    object-fit: contain;
+    /* margin-right: 1rem;
+    margin-bottom: 2rem; */
+    /* align-self: flex-end; */
+    border-radius: 2rem;
+    height: 100%;
+    /* transform: rotate(-45deg); */
+}
+
+.search_categories{
+    width: 100%;
+    padding: 0 2rem;  
+}
+
+.categories{
+    width: 100%;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(5,1fr);
+}
+
+.search_categories h1{
+    color: #afafaf;
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+}
+
+.category_box{
+    /* width: 20rem; */
+    /* height: 20rem; */
+    min-width: 100px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.category_box h2{
+    color: white;
+    position: absolute;
+    font-size: 1.9rem;
+    text-shadow: 0 0 6px black;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.category_box img{
+    width: 100%;
+    object-fit: contain;
+    border-radius: 1rem;
+}
+
+.result_page{
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+    width: 100%;
+}
+
+.result_page::-webkit-scrollbar{
+    display: none;
+}
+
+.top_result{
+    width: 40%;
+    /* height: 35%; */
+    color: white;
+}
+
+.top_result>h1{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.top_result_card{
+    background-color: #1d1d1d;
+    height: 92%;
+    max-height: 24.8rem;
+    border-radius: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top_result_img{
+    width: 10rem;
+    height: 10rem;
+    padding-top: 2rem;
+}
+
+.top_result_card img{
+    border-radius: 6px;
+    box-shadow: 0 0 15px black;
+   width: 100%;
+   object-fit: contain;
+}
+
+.top_result_card h1{
+    font-size: 3.5rem;
+    margin-bottom: 5px;
+}
+
+.top_result_track_info{
+    margin: 0 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.top_result_track_info p{
+    color: #afafaf;
+    font-size: 1.4rem;
+    margin-right: 1rem;
+    display: inline;
+}
+
+.top_result_track_info p, h1{
+    text-align: left;
+}
+
+.search_page_top_row{
+    display: flex;
+    padding-top: 1.5rem;
+    margin-bottom: 5rem;
+    margin-left: 3rem;
+}
+
+.search_tracks{
+    width: 60%;
+    color: white;
+    padding-left: 4rem ;
+}
+
+
+.search_tracks_main_text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 3rem;
+}
+
+.util2{
+    margin-top: 1.4rem;
+}
+
+.search_tracks_main_text a{
+    font-size: 1.7rem;
+    color: #8a8a8a;
+}
+
+.search_tracks_main_text a:hover{
+    color: #ffffff;
+}
+
+.search_tracks_main_text h1{
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.search_result_track_img{
+    width: 5rem;
+    height: 5rem;
+}
+
+.search_result_track{
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: flex-end;
+}
+
+.search_result_track_img img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.search_result_track_info{
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-right:3rem;
+}
+
+.search_result_track_info h3{
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    font-weight: 300;
+}
+
+.search_result_track_info p{
+    display: flex;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #8a8a8a;
+    margin-right: 1rem;
+}
+
+.track_length p{
+    font-size: 1.4rem;
+}
+
+
+.img_avatar{
+    width: 16rem;
+    height: 16rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(80, 80, 80);
+}
+
+@media (max-width:800px)  {
+    .search_top_artists{
+        min-height: 28rem;
+        padding: 2rem 0 0 1.2rem;
+    }
+    .search_top_card{
+        margin: 0 5px;
+    }
+    .search_top_artists .text_big{
+        font-size: 3rem;
+    }
+    .search_top_artists h1{
+        font-size: 2.5rem;
+    }
+    .categories{
+        grid-template-columns: repeat(4,1fr);
+        gap: 1.2rem;
+    }
+    .category_box h2{
+        font-size: 2rem;
+    }
+}
+
+
+
+@media (max-width:480px) and (min-width:361px){
+    .search_top_artists{
+        min-height: 26rem;
+        padding: 2rem 0 0 1rem;
+    }
+    .search_top_card{
+        margin: 0 2px;
+    }
+    .search_top_artists .text_big{
+        font-size: 3.4rem;
+    }
+    .search_top_artists h1{
+        font-size: 2.8rem;
+    }
+    .categories{
+        grid-template-columns: repeat(3,1fr);
+        gap:8px;
+    }
+    .category_box h2{
+        font-size: 2rem;
+    }
+}
+
+@media (max-width:360px) {
+    .search_top_artists{
+        min-height: 24rem;
+        padding: 2rem 0 0 1rem;
+    }
+
+    .search_top_artists h1{
+        font-size: 3.5rem;
+    }
+    .search_categories{
+        padding: 0 8px;
+    }
+   .search_top_artists .text_big{
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+    .category_box h2{
+        font-size: 2.4rem;
+    }
+    .search_top_card{
+        margin: 0 3px;
+        border-radius: 5px;
+    }
+    .search_top_card img{
+        border-radius: 1.8rem;
+    }
+    .categories{
+        grid-template-columns: repeat(2,1fr);
+        gap: 5px;
+        padding-bottom: 5rem;
+
+    }
+    .category_box{
+        min-width: 4px;
+    }
+}

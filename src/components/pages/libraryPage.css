@@ -1,0 +1,151 @@
+.library_page{
+    height: 100%;
+    color: rgb(255, 255, 255);
+    padding: 3rem 0 3rem 3rem;
+    overflow-y: scroll;
+    background-color: #121212;
+}
+
+.margin_left{
+    margin-left: 3rem;
+}
+
+.library_page::-webkit-scrollbar{
+    background-color: transparent;
+    width: 14px;
+}
+
+.library_page::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background-color: rgb(73, 73, 73);
+}
+
+.library_main{
+    width: 100%;
+    height: 100%;
+}
+
+.library_head{
+    margin-bottom: 2rem;
+}
+
+.library_container{
+    min-height:40%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.library_playlists_liked{
+    width: 35%;
+    background-image: linear-gradient(145deg,rgb(0, 67, 212), rgb(128, 145, 179));
+    border-radius: 0.6rem;
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 3rem;
+    font-size: 2rem;
+    box-shadow: 3px 5px 10px black;
+    cursor: pointer;
+    grid-column-start: 0;
+    grid-column-end: 3;
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+
+.library_playlists_liked:hover{
+    transform: scale(1.01);
+}
+
+.library_playlist_card{
+    margin-right: 1.8rem;
+}
+
+.library_artist{
+    background-color: #181818;
+    padding: 1.8rem 1.8rem 3rem 1.8rem;
+    margin: 0 1.5rem 1.5rem 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    max-width: 200px;
+    transition: background-color 0.3s;
+    min-height: 26rem;
+}
+.library_artist:hover{
+    background-color: #2b2b2b;
+}
+
+.library_artist_img{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.library_artist_img img{
+    border-radius: 50%;
+    box-shadow: 0 0 1rem black;
+    width: 100%;
+    object-fit: contain;
+}
+
+.library_artist_name{
+    display: grid;
+    margin-top: 2rem;
+    place-items: center;
+    color: white;
+}
+
+.library_podcasts{
+    height: 100%;
+}
+
+.podcast_empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.podcast_empty_icon{
+    margin-bottom: 2rem;
+}
+
+.playlist_empty_text{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.playlist_empty_text h1,p{
+    text-align: center;
+}
+
+.playlist_empty_text h1{
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.playlist_empty_text p{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 100;
+}
+
+.playlist_empty_text button{
+    width: 20rem;
+    margin: auto;
+    border-radius: 10rem;
+    padding: 8px 2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: #222222;
+}
+
+.playlist_empty_text button:hover{
+    text-decoration: underline;
+}
