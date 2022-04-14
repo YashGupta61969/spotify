@@ -1,11 +1,13 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import './likedTracks.css'
 import { useDataLayerValue } from '../../DataLayer';
+import { Link } from 'react-router-dom';
 
 function PlaylistPage({token}) {
 
  const [{ playlist, playlistId, user}, dispatch] = useDataLayerValue();
+ const [artistId, setArtistId] = useState('')
  
  useEffect(() => {
     if(token){
@@ -28,6 +30,13 @@ function PlaylistPage({token}) {
 
         
       },[playlistId ]);
+
+      useEffect(()=>{
+        dispatch({
+          type:"SET_ARTISTID",
+          artistId:artistId
+      })
+      },[artistId])
       
       
       return (
@@ -63,7 +72,7 @@ function PlaylistPage({token}) {
                   <h3>{playlistSong.track.name}</h3>
                   <div className="liked_tracks_artists">
                     {playlistSong.track.artists.map((artist) => {
-                      return (<p key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
+                      return (<Link to={`/artist/${artist.id}`} onMouseOver={()=>setArtistId(artist.id)} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
                     })}
                   </div>
                 </div>

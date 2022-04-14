@@ -53,10 +53,11 @@
 .liked_tracks_header_text p{
     text-align: left;
     font-size: 1.5rem;    
+    color: rgb(172, 172, 172);
 }
 
 .liked_tracks_header_text h1{
-    font-size: 10rem;
+    font-size: 9rem;
 }
 
 .liked_tracks_box{
@@ -115,19 +116,24 @@
 
 .song_title{
     margin-left: 2rem;
+    position: relative;
+    width: 100%;
 }
 
 .song_title h3{
     font-size: 1.9rem;
-    cursor: pointer;
     font-weight: 300;
     letter-spacing: 0px;
 }
 
-.song_title h3:hover{
-    text-decoration: underline;
-
+.liked_duration{
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
+
+
 .song_title p:hover{
     text-decoration: underline;
 
@@ -144,10 +150,12 @@
     display: flex;
 }
 
-.liked_tracks_artists p{
+.liked_tracks_artists a{
     margin-right: 1rem;
     color: rgb(185, 185, 185);
     word-spacing: -1px;
+    font-size: 1.2rem;
+    margin-top: 2px;
 }
 
 

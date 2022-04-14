@@ -19,13 +19,14 @@ function HomeRow({ featuredPl }) {
     <>
       {featuredPl &&
         featuredPl.map((playlist, index) => index < 5 && (
-            <div
+            <Link
+              to={local ?`playlist/${playlist.id}` :" "}
               onMouseOver={()=>setLocal(playlist.id && playlist.id)}
               className="home_row_card"
               key={playlist.id}
             >
-         <PlaylistCard local={local} playlist={playlist}/>
-            </div>
+         <PlaylistCard  playlist={playlist}/>
+            </Link>
           )
         )}
     </>

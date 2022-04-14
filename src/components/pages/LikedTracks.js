@@ -3,12 +3,14 @@ import "./likedTracks.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { useDataLayerValue } from '../../DataLayer';
+import { Link } from "react-router-dom";
 
 
 function LikedTracks({token}) {
 
   const[likedTracks,setLikedTracks] = useState([])
-  const [{user}] = useDataLayerValue()
+  const[artistId,setArtistId] = useState('')
+  const [{user}, dispatch] = useDataLayerValue()
 
   useEffect(() => {
     const url = `https://api.spotify.com/v1/me/tracks?limit=50`;
@@ -25,7 +27,29 @@ function LikedTracks({token}) {
         .then((data) =>setLikedTracks(data.items));
 
   }, []);
-  
+
+  useEffect(()=>{
+    dispatch({
+        type:'SET_ARTISTID',
+        artistId:artistId
+    })
+  },[artistId])
+
+
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+
+  function convertMsToMinutesSeconds(milliseconds) {
+    const minutes = Math.floor(milliseconds / 60000);
+    const seconds = Math.round((milliseconds % 60000) / 1000);
+
+    return seconds === 60
+      ? `${padTo2Digits(minutes + 1)}:00`
+      : `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
+  }
+
+  console.log(likedTracks)
   return (
     <div className="liked_tracks">
       <div className="liked_tracks_header">
@@ -57,9 +81,10 @@ function LikedTracks({token}) {
                 </div>
                 <div className="song_title">
                   <h3>{likedTrack.track.name}</h3>
+                  <p className="liked_duration">{convertMsToMinutesSeconds(likedTrack.track.duration_ms  )}</p>
                   <div className="liked_tracks_artists">
                     {likedTrack.track.artists.map((artist) => {
-                      return (<p key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
+                      return (<Link to={`/artist/${artist.id}`} onMouseOver={()=>setArtistId(artist.id)} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
                     })}
                   </div>
                 </div>

@@ -17,13 +17,14 @@ function Show({ token }) {
       },
     }).then(resp => resp.json()).then(data => setShow(data));
 
-    fetch(`https://api.spotify.com/v1/shows/${showId}/episodes`, {
+    fetch(`https://api.spotify.com/v1/shows/${showId}/episodes?limit=50`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
       },
     }).then(resp => resp.json()).then(data => setEpisode(data.items))
-  }, [])
+  }, []);
+
 
   useEffect(()=>{
     dispatch({
@@ -72,7 +73,7 @@ function Show({ token }) {
             </div>
             <div className="show_episode_description">
               <h3>{epi.name}</h3>
-              <p>{epi.description}</p>
+              <p>{`${epi.description.substring(0,220)}.....` }</p>
               <h2>{`${epi.release_date} ~ ${convertMsToMinutesSeconds(epi.duration_ms)} `}</h2>
             </div>
           </Link>        
