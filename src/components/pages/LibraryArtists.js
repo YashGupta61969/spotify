@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDataLayerValue } from "../../DataLayer";
 
 function LibraryArtists() {
@@ -29,24 +29,21 @@ function LibraryArtists() {
   },[artistId]);
   return (
     <>
-    <Outlet/>
-        <div className="library_main">
-      <div className="library_head">
+        <div className="see_all" style={{paddingBottom:'8rem'}}>
+      <div className="home_row_heading" style={{marginBottom:'4rem'}}>
         <h1>ARTISTS</h1>
       </div>
-      <div className="library_container">
+      <div className="see_all_div">
         {artists &&
           artists.map((artist) => {
             return (
-              <Link to={`/artist/${artist.id}`} key={artist.id}>
-              <div onMouseOver={()=>setArtistId(artist.id)} className="library_artist">
-                <div className="library_artist_img">
+              <Link onMouseOver={()=>setArtistId(artist.id)} className="home_row_card" style={{marginTop:'2rem'}} to={`/artist/${artist.id}`} key={artist.id}>
+                <div className="home_row_card_img">
                   <img src={artist.images[0].url} alt="" />
                 </div>
-                <div className="library_artist_name">
+                <div className="home_row_card_name">
                   <h1>{artist.name}</h1>
                 </div>
-              </div>
               </Link>
             );
           })}

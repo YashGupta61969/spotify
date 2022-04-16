@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 function Home() {
   const [{ token, featuredPl,myPlaylists, newReleases }, dispatch] = useDataLayerValue();
   const [date, setDate] = useState();
-  const [playlistId, setPlaylistId] = useState();
+  const [playlistId, setPlaylistId] = useState('');
 
   useEffect(() => {
     token &&

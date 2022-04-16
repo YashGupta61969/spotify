@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDataLayerValue } from '../../DataLayer'
 import AlbumCard from './AlbumCard';
 
 function NewReleases() {
-const[{newReleases}]= useDataLayerValue();
-
+const[{newReleases}, dispatch]= useDataLayerValue();
 const [local, setLocal] = useState("");
+
+useEffect(()=>{
+  dispatch({
+    type:"SET_ALBUMID",
+    albumId: local
+  })
+},[local])
+
   return (
     <div className='see_all'>
     <div className="home_row">

@@ -2,16 +2,9 @@
     overflow-x: hidden;
 }
 
-.no_parent{
-    color: white;
-    font-size: 3rem;
-    margin-left: 3rem;
-    margin-bottom: 2rem;
-}
-
 .artist_page_dp{
-    width: 24rem;
-    height: 24rem;
+    width: 26rem;
+    height: 26rem;
     border-radius: 50%;
 }
 

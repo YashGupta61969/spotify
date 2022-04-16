@@ -134,9 +134,9 @@
     background-color: #2b2b2b;
 }
 
-.home_row_card_img{
+/* .home_row_card_img{
     height: 100%;
-}
+} */
 
 .home_row_card_img img{
     width: 16rem;
@@ -144,11 +144,11 @@
 }
 
 .home_row_card_name{
-    margin-top: 1rem;
+    margin-top: 1.4rem;
 }
 
 .home_row_card_name h1{
-    font-size: 1.8rem;
+    font-size: 2rem;
 }
 
 .home_row_card_discription{
