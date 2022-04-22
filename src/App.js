@@ -3,7 +3,6 @@ import './app.css'
 import Login from './components/Login';
 import Main from './components/Main';
 import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
 import getToken from './spotify';
 import {BrowserRouter}from 'react-router-dom'
 import { useDataLayerValue } from './DataLayer';
@@ -49,7 +48,6 @@ function App() {
         <div className="app">
         <Sidebar token={token}/>
         <Main/>
-        {/* <Footer/> */}
        </div> : <Login/>}
      
        </BrowserRouter>

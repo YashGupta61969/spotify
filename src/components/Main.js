@@ -25,8 +25,7 @@ import Show from "./pages/Show";
 
 
 function Main() {
-  const [{ token, artistId,showId, episodeId, categoryId, playlistId, albumId }] =
-    useDataLayerValue();
+  const [{ token }] = useDataLayerValue();
 
   return (
     <>
@@ -38,8 +37,8 @@ function Main() {
             element={<LikedTracks token={token} />}
           />
           <Route
-            path={`search/category/${categoryId}`}
-            element={<CategoryPage id={categoryId}/>}
+            path='search/category/:id'
+            element={<CategoryPage token={token}/>}
           />
 
           <Route
@@ -63,17 +62,17 @@ function Main() {
           />
 
           <Route
-            path={`/playlist/${playlistId}`}
+            path='/playlist/:id'
             element={<PlaylistPage token={token} />}
           />
 
           <Route
-            path={`/episode/${episodeId}`}
+            path='/episode/:id'
             element={<EpisodePage token={token} />}
           />
 
           <Route
-            path={`/show/${showId}`}
+            path='/show/:id'
             element={<Show token={token} />}
           />
 
@@ -83,7 +82,7 @@ function Main() {
           />
 
           <Route
-            path={`album/${albumId}`}
+            path='album/:id'
             element={<AlbumPage token={token} />}
           />
 
@@ -92,15 +91,15 @@ function Main() {
             element={<Search />}
           />
           <Route
-          path={`artist/${artistId}`}
+          path='artist/:id'
           element={<ArtistPage token={token} />}
           />
 
           <Route index element={<Home />} />
           <Route path="library" element={<LibraryPage />}>
-            <Route index element={<LibraryPlaylist />} />
-            <Route path="albums" element={<LibraryAlbums />} />
-            <Route path="artists" element={<LibraryArtists />} />
+            <Route index element={<LibraryPlaylist token={token} />} />
+            <Route path="albums" element={<LibraryAlbums token={token} />} />
+            <Route path="artists" element={<LibraryArtists token={token} />} />
 
             <Route path="podcasts" element={<LibraryPodcasts />} />
           </Route>

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDataLayerValue } from "../../DataLayer";
 
-function LibraryArtists() {
-  const [{ token }, dispatch] = useDataLayerValue();
+function LibraryArtists({token}) {
   const [artists, setArtists] = useState("");
   const [artistId, setArtistId] = useState("");
 
@@ -19,13 +17,6 @@ function LibraryArtists() {
       })
       .then((data) => setArtists(data.artists.items));
 
-  dispatch({
-    type:'SET_ARTISTID',
-    artistId:artistId
-  })
-
-      
-
   },[artistId]);
   return (
     <>
@@ -37,7 +28,7 @@ function LibraryArtists() {
         {artists &&
           artists.map((artist) => {
             return (
-              <Link onMouseOver={()=>setArtistId(artist.id)} className="home_row_card" style={{marginTop:'2rem'}} to={`/artist/${artist.id}`} key={artist.id}>
+              <Link className="home_row_card" style={{marginTop:'2rem'}} to={`/artist/${artist.id}`} key={artist.id}>
                 <div className="home_row_card_img">
                   <img src={artist.images[0].url} alt="" />
                 </div>

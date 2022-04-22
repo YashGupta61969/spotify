@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useDataLayerValue } from '../../DataLayer'
+import React, {useState, useEffect} from 'react'
 import AlbumCard from './AlbumCard';
 
-function NewReleases() {
-const[{newReleases}, dispatch]= useDataLayerValue();
-const [local, setLocal] = useState("");
-
-useEffect(()=>{
-  dispatch({
-    type:"SET_ALBUMID",
-    albumId: local
-  })
-},[local])
-
+function NewReleases({token}) {
+  const [newReleases, setNewReleases] = useState([])
+  useEffect(() => {
+    if(token){
+        fetch('https://api.spotify.com/v1/browse/new-releases', {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+          .then((resp) =>resp.json()).then(NR=>setNewReleases(NR.albums.items))
+        }    
+      },[]);
   return (
     <div className='see_all'>
     <div className="home_row">
@@ -23,7 +24,6 @@ useEffect(()=>{
       {newReleases &&
       newReleases.map((album) => (
           <div
-            onMouseOver={()=>setLocal(album && album.id)}
             className="home_row_card margin_top"
             key={album.id}
           >

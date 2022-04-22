@@ -8,9 +8,12 @@ import AlbumRow from "./AlbumRow";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const [{ token, featuredPl,myPlaylists, newReleases }, dispatch] = useDataLayerValue();
+  const [{ token }, dispatch] = useDataLayerValue();
   const [date, setDate] = useState();
   const [playlistId, setPlaylistId] = useState('');
+  const [myPlaylists, setMyplaylists] = useState('');
+  const [newReleases, setNewReleases] = useState([]);
+  const [featuredPlaylist, setFeaturedPlaylist] = useState([]);
 
   useEffect(() => {
     token &&
@@ -23,12 +26,7 @@ function Home() {
         .then((resp) => {
           return resp.json();
         })
-        .then((data) => {
-          dispatch({
-            type: "SET_FEATURED_PLAYLISTS",
-            featuredPl: data.playlists.items,
-          });
-        });
+        .then((data) =>setFeaturedPlaylist(data.playlists.items));
 
     token &&
       fetch("https://api.spotify.com/v1/browse/new-releases?limit=50", {
@@ -40,12 +38,20 @@ function Home() {
         .then((resp) => {
           return resp.json();
         })
-        .then((data) => {
-          dispatch({
-            type: "NEW_RELEASES",
-            newReleases: data.albums.items,
-          });
-        });
+        .then((data) => setNewReleases(data.albums.items));
+
+
+        const getMyPlaylists = async ()=>{
+          let resp = await fetch("https://api.spotify.com/v1/me/playlists",{
+            method:'GET',
+            headers: {
+            "Authorization" : "Bearer " + token
+            } 
+          })
+          let data = await resp.json();
+          setMyplaylists(data.items);
+      }   
+         getMyPlaylists();
 
       }, []);
 
@@ -113,7 +119,7 @@ setDate(greetings());
 
 {
   myPlaylists && myPlaylists.map((playlist, index)=> index < 3 &&(
-      <Link to={`playlist/${playlist.id}`} onMouseEnter={()=>setPlaylistId(playlist.id)} key={playlist.id} className="home_main_card">
+      <Link to={`playlist/${playlist.id}`} key={playlist.id} className="home_main_card">
       <div className="home_main_card_liked">
       <img src={playlist.images[0].url} alt="" />
       </div>
@@ -133,7 +139,7 @@ setDate(greetings());
           <Link to={'recommended-playlists'}>SEE ALL</Link>
         </div>
         <div className="home_row_cards">
-          <HomeRow featuredPl={featuredPl} />
+          <HomeRow featuredPl={featuredPlaylist} />
         </div>
       </div>
 

@@ -1,36 +1,8 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { Link } from "react-router-dom";
-import { useDataLayerValue } from "../DataLayer";
 
 function SearchResult({ data }) {
-   const[{},dispatch] = useDataLayerValue();
-
-    const[playlist, setPlaylist] = useState("");
-    const[artist, setArtist] = useState("");
-    const[episodeId, setEpisodeId] = useState('');
-
-   useEffect(()=>{
-     dispatch({
-       type:'SET_PLAYLISTID',
-       playlistId: playlist
-     })
-   },[playlist])
-
-   useEffect(()=>{
-    dispatch({
-      type:'SET_ARTISTID',
-      artistId: artist
-    })
-   },[artist])
-
-   useEffect(()=>{
-    dispatch({
-      type:'SET_EPISODEID',
-      episodeId: episodeId
-    })
-   },[episodeId])
 
   function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
@@ -107,7 +79,7 @@ function SearchResult({ data }) {
         <div className="home_row_cards">
 
           {data && data.artists.items.map((artist, index) => index<5 &&(
-            <div onMouseEnter={()=>setArtist(artist.id)} key={artist.id} className="home_row_card">
+            <div key={artist.id} className="home_row_card">
               <Link to={`/artist/${artist.id}`}>
               <div className="home_row_card_img">
                {artist.images[0]?.url? <img src={artist && artist.images[0]?.url} alt="album" />: <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
@@ -129,7 +101,7 @@ function SearchResult({ data }) {
         <div className="home_row_cards">
 
           {data && data.playlists.items.map((playlist, index) => index<5 &&(
-            <div onMouseEnter={()=>setPlaylist(playlist.id)} key={playlist.id} className="home_row_card">
+            <div key={playlist.id} className="home_row_card">
               <Link to={`/playlist/${playlist.id}`}>
               <div className="home_row_card_img">
                {playlist.images[0]?.url? <img src={playlist && playlist.images[0]?.url} alt="album" />: <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
@@ -152,7 +124,7 @@ function SearchResult({ data }) {
         <div className="home_row_cards">
 
           {data && data.episodes.items.map((episode, index) => index<5 &&(
-            <Link to={`/episode/${episode.id}`} onMouseOver={()=>setEpisodeId(episode.id)} key={episode.id} className="home_row_card">
+            <Link to={`/episode/${episode.id}`} key={episode.id} className="home_row_card">
               <div className="home_row_card_img">
                {episode.images[0]?.url? <img src={episode && episode.images[0]?.url} alt="album" />: <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
               </div>

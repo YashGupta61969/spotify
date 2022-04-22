@@ -2,19 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useDataLayerValue } from '../../DataLayer'
 
-function LibraryPlaylist() {
+function LibraryPlaylist({token}) {
 
-  const [{token, myPlaylists}, dispatch] =  useDataLayerValue();
-  const [local,setLocal] = useState("");
   const [likedTracks,setLikedTracks] = useState("");
-
-  useEffect(()=>{     
-        dispatch({
-          type: 'SET_PLAYLISTID',
-          playlistId: local,
-        })
-      
-  },[ local ])
+  const [myPlaylists,setMyPlaylists] = useState("");
 
   useEffect(() => {
     const url = `https://api.spotify.com/v1/me/tracks?limit=50`;
@@ -30,6 +21,18 @@ function LibraryPlaylist() {
         })
         .then((data) =>setLikedTracks(data.items.length));
 
+
+        const getMyPlaylists = async ()=>{
+          let resp = await fetch("https://api.spotify.com/v1/me/playlists",{
+            method:'GET',
+            headers: {
+            "Authorization" : "Bearer " + token
+            } 
+          })
+          let data = await resp.json();
+          setMyPlaylists(data.items);
+      }   
+         getMyPlaylists();
   }, []);
 
   return (
@@ -47,7 +50,7 @@ function LibraryPlaylist() {
            {  myPlaylists && myPlaylists.map(playlist=>{
              return (
                  <Link key={playlist.id} to={`/playlist/${playlist.id}`} >
-                 <div onMouseOver={()=>{setLocal(playlist.id)}} className="home_row_card library_playlist_card" >
+                 <div className="home_row_card library_playlist_card" >
                 <div className="home_row_card_img">
                     <img src={playlist.images[0].url} alt="" />
                     </div>

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { useDataLayerValue } from '../../DataLayer'
+import { Link,useParams } from 'react-router-dom';
 import './categoryPage.css'
 
-function CategoryPage({id}) {
- const [{token},dispatch] = useDataLayerValue()
+function CategoryPage({token}) {
  const [playlist,setPlaylist] = useState('');
- const [playlistId,setPlaylistId] = useState('');
  const [CategoryName,setCategoryName] = useState('');
+ const {id} = useParams();
 
   useEffect(()=>{
     fetch(`https://api.spotify.com/v1/browse/categories/${id}/playlists`, {
@@ -27,20 +25,9 @@ function CategoryPage({id}) {
         Authorization: "Bearer " + token,
       },
     })
-      .then((resp) => {
-        return resp.json();
-      }).then(data => setCategoryName(data.name));
-
-
-      
+      .then(resp=> resp.json()).then(data => setCategoryName(data.name));
+    
   },[]);
-
-  useEffect(()=>{
-    dispatch({
-      type: 'SET_PLAYLISTID',
-      playlistId:playlistId
-    })
-  },[playlistId])
   return (
   <div className="category_page">
     <div className="category_page_header">
@@ -51,7 +38,7 @@ function CategoryPage({id}) {
     <div className="category_playlists">
       {
         playlist && playlist.map((pl)=>(
-      <Link to={`/playlist/${pl.id}`} onMouseOver={()=>setPlaylistId(pl.id)} key={pl.id} className="home_row_card category_utility_margin">
+      <Link to={`/playlist/${pl.id}`} key={pl.id} className="home_row_card category_utility_margin">
         <div className="home_row_card_img">
           <img src={pl.images[0].url} alt="" />
         </div>

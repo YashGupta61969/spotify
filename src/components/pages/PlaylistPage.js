@@ -2,16 +2,18 @@ import React,{useEffect, useState} from 'react'
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import './likedTracks.css'
 import { useDataLayerValue } from '../../DataLayer';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function PlaylistPage({token}) {
 
- const [{ playlist, playlistId, user}, dispatch] = useDataLayerValue();
+ const [{}, dispatch] = useDataLayerValue();
  const [artistId, setArtistId] = useState('')
+ const [playlist, setPlaylist] = useState(undefined)
+ const {id} = useParams();
  
  useEffect(() => {
     if(token){
-        fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+        fetch(`https://api.spotify.com/v1/playlists/${id}`, {
           method: "GET",
           headers: {
             Authorization: "Bearer " + token,
@@ -19,17 +21,9 @@ function PlaylistPage({token}) {
         })
           .then((resp) => {
             return resp.json();
-          }).then(pl=>{
-            dispatch({
-              type: 'SET_PLAYLIST',
-              playlist: pl
-            })
-          })
-
-        }
-
-        
-      },[playlistId ]);
+          }).then(pl=>setPlaylist(pl))
+        }    
+      },[]);
 
       useEffect(()=>{
         dispatch({
@@ -38,10 +32,9 @@ function PlaylistPage({token}) {
       })
       },[artistId])
       
-      
       return (
         <div className='playlists'>
-          <div className="liked_tracks_header">
+    <div className="liked_tracks_header">
         <div className="liked_tracks_box">
           <img src={playlist?.images[0].url} alt="" />
         </div>
@@ -49,7 +42,8 @@ function PlaylistPage({token}) {
         <div className="liked_tracks_header_text">
           <p>PLAYLIST</p>
           <h1>{playlist?.name}</h1>
-          <p>{user?.display_name} ~ {playlist?.tracks.items.length} Songs</p>
+          <p className='liked_tracks_playlist_description'>{playlist?.description}</p>
+          <p>{playlist?.owner.display_name} - {playlist?.tracks.items.length} Songs</p>
         </div>
       </div>
 
@@ -79,7 +73,7 @@ function PlaylistPage({token}) {
               </div>
             );
           })}
-      </div>
+      </div> 
     </div>
   )
 }

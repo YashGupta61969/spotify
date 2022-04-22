@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from "react";
 import "./likedTracks.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { useDataLayerValue } from '../../DataLayer';
 import { Link } from "react-router-dom";
 
@@ -62,13 +61,6 @@ function LikedTracks({token}) {
           <h1>Liked Songs</h1>
           <p>{user?.display_name} ~ {likedTracks?.length} Songs</p>
         </div>
-      </div>
-
-      <div className="play_all_btn_container">
-        <PlayCircleIcon
-          className="play_all_btn"
-          sx={{ fontSize: 70, color: "#1DB954" }}
-        />
       </div>
 
       <div className="song_list">

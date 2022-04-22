@@ -11,8 +11,8 @@
     height: 100%;
     overflow-y: auto;
     /* margin-bottom: 2rem; */
-    padding-top: 10rem;
-    margin-top: -5rem;
+    /* padding-top: 5rem; */
+    /* margin-top: -5rem; */
 }
 
 .playlists::-webkit-scrollbar{
@@ -52,12 +52,12 @@
 
 .liked_tracks_header_text p{
     text-align: left;
-    font-size: 1.5rem;    
+    font-size: 1.7rem;    
     color: rgb(172, 172, 172);
 }
 
 .liked_tracks_header_text h1{
-    font-size: 9rem;
+    font-size: 10rem;
 }
 
 .liked_tracks_box{
@@ -77,6 +77,10 @@
     width: 100%;
 }
 
+.liked_tracks_playlist_description{
+    margin: 5px 0;
+}
+
 .play_all_btn_container{
     padding-left: 2rem;
 }
@@ -87,6 +91,7 @@
 
 .song_list{
     color: white;
+padding-bottom: 6rem;
     margin-top: 3rem;
     padding-top: 1rem;
     background-image: linear-gradient(rgba(0, 0, 0, 0.150),rgba(0, 0, 0, 0.150));

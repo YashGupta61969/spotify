@@ -12,8 +12,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 function Sidebar({token}) {
-const [{myPlaylists,screenSize, toggleSidebar}, dispatch] = useDataLayerValue();
-const [localValue, setLocalValue] = useState();
+const [{screenSize, toggleSidebar}, dispatch] = useDataLayerValue();
+const [localValue, setLocalValue] = useState('');
+const [myPlaylists, setMyplaylists] = useState([]);
 
 
 useEffect(()=>{
@@ -21,27 +22,22 @@ useEffect(()=>{
        type: 'SET_PLAYLISTID',
        playlistId: localValue
      })
-
-
- const getMyPlaylists = async ()=>{
-   let resp = await fetch("https://api.spotify.com/v1/me/playlists",{
-     method:'GET',
-     headers: {
-     "Authorization" : "Bearer " + token
-     } 
-   })
-   let data = await resp.json();
-   dispatch({
-     type: 'SET_MYPLAYLISTS',
-     myPlaylists: data.items,
-   });
-
-  }
-  
-  getMyPlaylists();
-  
 },[localValue])
 
+
+useEffect(()=>{
+  const getMyPlaylists = async ()=>{
+    let resp = await fetch("https://api.spotify.com/v1/me/playlists",{
+      method:'GET',
+      headers: {
+      "Authorization" : "Bearer " + token
+      } 
+    })
+    let data = await resp.json();
+    setMyplaylists(data.items);
+}   
+   getMyPlaylists();
+},[])
 
 
   return (

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useDataLayerValue } from '../../DataLayer';
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import "./episodePage.css";
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+
 
 function EpisodePage({token}) {
-    const [{episodeId},dispatch] = useDataLayerValue();
-    const [episode,setEpisode] = useState('');
-    const [showId,setShowId] = useState('');
+  const [episode,setEpisode] = useState('');
+  const navigate = useNavigate();
+    const {id} = useParams();
 
     useEffect(()=>{
-        fetch(`https://api.spotify.com/v1/episodes/${episodeId}`, {
+        fetch(`https://api.spotify.com/v1/episodes/${id}`, {
             method: "GET",
             headers: {
               Authorization: "Bearer " + token,
@@ -18,6 +17,7 @@ function EpisodePage({token}) {
           }).then(resp=>resp.json()).then(data=>setEpisode(data))
 
     },[])
+    console.log(episode)
     
     function padTo2Digits(num) {
         return num.toString().padStart(2, '0');
@@ -31,13 +31,6 @@ function EpisodePage({token}) {
           ? `${padTo2Digits(minutes + 1)} min`
           : `${padTo2Digits(minutes)} min ${padTo2Digits(seconds)} sec`;
       }
-
-      useEffect(()=>{
-        dispatch({
-          type:"SET_SHOWID",
-          showId:showId
-        })
-      },[showId])
 
   return (
       <div className="episodePage">
@@ -55,16 +48,12 @@ function EpisodePage({token}) {
 
       <div className="play_all_btn_container">
           <p className='episode_duration'>{episode.release_date} <span>{convertMsToMinutesSeconds(episode.duration_ms)}</span></p>
-        <PlayCircleIcon
-          className="play_all_btn"
-          sx={{ fontSize: 70, color: "#1DB954" }}
-        />
       </div>
       <div className="episode_description">
             <h1>Episode Description</h1>
             <p>{episode.description}</p>
-            <Link to={`/show/${episode && episode.show.id}`} onMouseOver={()=>setShowId(episode && episode.show.id)}>SEE ALL EPISODES</Link>
-      </div>
+            <button onClick={()=>navigate(`/show/${episode.show.id}`)} >SEE ALL EPISODES</button>
+      </div> 
       </div>
   )
 }

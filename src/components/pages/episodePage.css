@@ -16,6 +16,7 @@
 .lighten{
     background-color: rgb(17, 17, 17);
     margin-bottom: 2rem;
+    padding-top: 5rem;
 }
 
 .episode_description h1{
@@ -36,12 +37,15 @@
     margin-bottom: 5rem;
 }
 
-.episode_description a{
+.episode_description button{
     border: 1px solid white;
     padding: 1rem 5rem;
     border-radius: 5rem;
     font-size: 1.5rem;
     margin-left: 3rem;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
 }
 
 .episode_description a:hover{

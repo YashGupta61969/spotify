@@ -7,11 +7,8 @@ import { Link } from "react-router-dom";
 function Search() {
   const [{ token, query }, dispatch] = useDataLayerValue();
   const [artist, setArtist] = useState([]);
-  const [artistId, setArtistId] = useState('');
   const [searchData, setSearchData] = useState("");
   const [category, setCategory] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  
 
   useEffect(() => {
       query && fetch(`https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist%2Cplaylist%2Cepisode`, {
@@ -40,16 +37,6 @@ function Search() {
           })
           .then((data) => setArtist(data.items));
           
-        fetch("https://api.spotify.com/v1/me/top/artists", {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-          .then((resp) => {
-            return resp.json();
-          })
-          .then((data) => setArtist(data.items));
 
         fetch("https://api.spotify.com/v1/browse/categories?country=IN&limit=50", {
           method: "GET",
@@ -76,22 +63,6 @@ function Search() {
     };
   }, [query]);
 
-
-  useEffect(()=>{
-      dispatch({
-        type:'SET_CATEGORYID',
-        categoryId:categoryId
-      })
-  },[categoryId]);
-
-
-  useEffect(()=>{
-      dispatch({
-        type:'SET_ARTISTID',
-        artistId:artistId
-      })
-  },[artistId])
-
   return (
     <div className="search_page">
      {query.length===0 ?(<>
@@ -101,7 +72,7 @@ function Search() {
           {artist &&
             artist.map((art) => {
               return (
-                <Link to={`/artist/${art.id}`} onMouseOver={()=>setArtistId(art.id)} key={art.id} className="search_top_card">
+                <Link to={`/artist/${art.id}`} key={art.id} className="search_top_card">
                 <h1>{art.name}</h1>
                   <img src={art.images[0].url} alt="" />
                 </Link>
@@ -115,7 +86,7 @@ function Search() {
         {
           category && category.map(cat=>(
             <Link to={`category/${cat.id}`} key={cat.id} >
-            <div className="category_box" onMouseOver={()=>setCategoryId(cat.id)}>
+            <div className="category_box">
               <img src={cat.icons[0].url} alt="" />
               <h2>{cat.name}</h2>
             </div>

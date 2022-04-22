@@ -1,32 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import "./artistPage.css";
 import { useDataLayerValue } from "../../DataLayer";
 
 function ArtistPage({ token }) {
-  const [{ artistId }, dispatch] = useDataLayerValue();
+  const [{}, dispatch] = useDataLayerValue();
+  const {id} = useParams();
 
   const [tracks, setTracks] = useState("");
   const [artistAlbum, setArtistAlbum] = useState("");
   const [albumId, setAlbumId] = useState("");
-  // const [artistId, setArtistId] = useState("");
   const [relatedArtist, setRelatedArtist] = useState("");
   const [data, setData] = useState("");
 
 
   useEffect(() => {
-    fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
+    fetch(`https://api.spotify.com/v1/artists/${id}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-      .then((resp) => {
-        return resp.json();
-      }).then(data => setData(data))
-  }, [data])
+      .then(resp=> resp.json()).then(data => setData(data))
+  }, [])
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/artists/${data.id}/top-tracks?market=ES`, {
@@ -63,22 +60,6 @@ function ArtistPage({ token }) {
   }, [data, token]);
 
 
-  useEffect(() => {
-    dispatch({
-      type: 'SET_ALBUMID',
-      albumId: albumId
-    })
-  }, [albumId]);
-
-
-  // useEffect(()=>{
-  //   dispatch({
-  //     type: 'SET_ARTISTID',
-  //     artistId:artistId
-  //   });
-  //     },[artistId])
-
-
   function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
   }
@@ -91,7 +72,6 @@ function ArtistPage({ token }) {
       ? `${padTo2Digits(minutes + 1)}:00`
       : `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
   }
-console.log(data)
   return (
     <div className="playlists">
       <div className="liked_tracks_header">
@@ -138,7 +118,7 @@ console.log(data)
 
           {artistAlbum && artistAlbum.map((album) => (
 
-            <Link to={`/album/${album.id}`} onMouseOver={() => setAlbumId(album.id)} key={album.id} className="home_row_card">
+            <Link to={`/album/${album.id}`} key={album.id} className="home_row_card">
               <div className="home_row_card_img">
                 {album.images[0]?.url ? <img src={album && album.images[0]?.url} alt="album" /> : <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
               </div>

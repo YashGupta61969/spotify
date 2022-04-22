@@ -1,38 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { useDataLayerValue } from '../../DataLayer'
+import { Link, useParams } from 'react-router-dom';
 
 function Show({ token }) {
-  const [{ showId }, dispatch] = useDataLayerValue();
-
   const [episode, setEpisode] = useState('');
-  const [episodeId, setEpisodeId] = useState('');
   const [show, setShow] = useState('');
+  const {id} = useParams()
 
   useEffect(() => {
-    fetch(`https://api.spotify.com/v1/shows/${showId}`, {
+    fetch(`https://api.spotify.com/v1/shows/${id}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
       },
     }).then(resp => resp.json()).then(data => setShow(data));
 
-    fetch(`https://api.spotify.com/v1/shows/${showId}/episodes?limit=50`, {
+    fetch(`https://api.spotify.com/v1/shows/${id}/episodes?limit=50`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
       },
     }).then(resp => resp.json()).then(data => setEpisode(data.items))
   }, []);
-
-
-  useEffect(()=>{
-    dispatch({
-      type: 'SET_EPISODEID',
-      episodeId:episodeId
-    })
-  },[episodeId])
-
 
   function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
@@ -67,7 +55,7 @@ function Show({ token }) {
       <div className="show_episodes">
         <h1>All Episodes</h1>
         {episode && episode.map(epi => (
-          <Link to={`/episode/${epi.id}`} onMouseOver={()=>setEpisodeId(epi.id)} key={epi.id} className="show_episode">
+          <Link to={`/episode/${epi.id}`} key={epi.id} className="show_episode">
             <div className="show_episode_img">
               <img src={epi.images[0].url} alt="" />
             </div>
