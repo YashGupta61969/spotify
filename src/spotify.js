@@ -15,6 +15,7 @@
   ]
   
   const redirectUri = "http://localhost:3000/"
+  // const redirectUri = "https://spotify-clone-69.netlify.app/"
   const clientId = "02d56f30f61f436c9eb6a7d7759d425a"
 
   export const loginUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`

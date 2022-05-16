@@ -5,12 +5,10 @@ import "./artistPage.css";
 import { useDataLayerValue } from "../../DataLayer";
 
 function ArtistPage({ token }) {
-  const [{}, dispatch] = useDataLayerValue();
   const {id} = useParams();
 
   const [tracks, setTracks] = useState("");
   const [artistAlbum, setArtistAlbum] = useState("");
-  const [albumId, setAlbumId] = useState("");
   const [relatedArtist, setRelatedArtist] = useState("");
   const [data, setData] = useState("");
 

@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react'
 import { useDataLayerValue } from '../../DataLayer';
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import MusicNoteIcon from "@mui/icons-material/FavoriteBorder";
+import { Link } from 'react-router-dom';
 
 
 function RecentlyPlayed({token}) {
@@ -44,18 +44,11 @@ function RecentlyPlayed({token}) {
   </div>
 </div>
 
-<div className="play_all_btn_container">
-  <PlayCircleIcon
-    className="play_all_btn"
-    sx={{ fontSize: 70, color: "#1DB954" }}
-  />
-</div>
-
 <div className="song_list">
   {recentlyPlayed &&
-    recentlyPlayed.map((song) => {
+    recentlyPlayed.map((song, index) => {
       return (
-        <div key={song?.track.id} className="song_row">
+        <div key={`${song?.track.id}${index}`} className="song_row">
           <div className="song_album_image">
             <img src={song?.track.album.images[0].url} alt="" />
           </div>
@@ -63,7 +56,7 @@ function RecentlyPlayed({token}) {
             <h3>{song?.track.name}</h3>
             <div className="liked_tracks_artists">
               {song?.track.artists.map((artist) => {
-                return (<p key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
+                return (<Link to={`/artist/${artist.id}`} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
               })}
             </div>
           </div>

@@ -1,8 +1,10 @@
 import React from "react";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 function SearchResult({ data }) {
+
+  const navigate = useNavigate();
 
   function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
@@ -21,7 +23,7 @@ function SearchResult({ data }) {
     <div className="result_page">
       <div className="search_page_top_row">
         <div className="top_result">
-          <h1>Top Results</h1>
+          <h1>Top Result</h1>
           <div className="top_result_card">
             <div className="top_result_img">
               <img
@@ -31,10 +33,10 @@ function SearchResult({ data }) {
             </div>
             <div className="top_result_track_info">
               <h1>{data && data.tracks.items[0].name}</h1>
-              <div className="seacrh_artist">
+              <div className="search_artist">
                 {data &&
                   data.tracks.items[0].artists.map((art,index) => index<4 && (
-                    <p key={art.id}>{art.name}</p>
+                    <p onClick={()=>navigate(`/artist/${art.id}`)} key={art.id}>{art.name}</p>
                   ))}
               </div>
 
@@ -45,7 +47,7 @@ function SearchResult({ data }) {
         <div className="search_tracks">
           <div className="search_tracks_main_text">
             <h1>Songs</h1>
-            <Link to={'search-results'}>SEE ALL</Link>
+            <h2 onClick={()=>navigate('search-results')}>SEE ALL</h2>
           </div>
           <div className="search_result_tracks_column">
             {
@@ -58,7 +60,7 @@ function SearchResult({ data }) {
                     <div className="search_result_track_info">
                       <div className="sample">
                         <h3>{track.name}</h3>
-                       <p>{track.artists.map((art,index) => index <4 &&(<span key={art.id}>{art.name}</span>) )}</p>
+                       <p>{track.artists.map((art,index) => index <4 &&(<span onClick={()=>navigate(`/artist/${art.id}`)} key={art.id}>{art.name}</span>) )}</p>
                       </div>
                       <div className="track_length">
                         <p>{convertMsToMinutesSeconds(track.duration_ms)}</p>
@@ -80,14 +82,14 @@ function SearchResult({ data }) {
 
           {data && data.artists.items.map((artist, index) => index<5 &&(
             <div key={artist.id} className="home_row_card">
-              <Link to={`/artist/${artist.id}`}>
+              <div onClick={()=>navigate(`/artist/${artist.id}`)}>
               <div className="home_row_card_img">
                {artist.images[0]?.url? <img src={artist && artist.images[0]?.url} alt="album" />: <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
               </div>
               <div className="home_row_card_name">
                 <h1>{artist.name}</h1>
               </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -102,14 +104,14 @@ function SearchResult({ data }) {
 
           {data && data.playlists.items.map((playlist, index) => index<5 &&(
             <div key={playlist.id} className="home_row_card">
-              <Link to={`/playlist/${playlist.id}`}>
+              <div onClick={()=>navigate(`/playlist/${playlist.id}`)}>
               <div className="home_row_card_img">
                {playlist.images[0]?.url? <img src={playlist && playlist.images[0]?.url} alt="album" />: <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
               </div>
               <div className="home_row_card_name">
                 <h1>{playlist.name}</h1>
               </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -124,14 +126,14 @@ function SearchResult({ data }) {
         <div className="home_row_cards">
 
           {data && data.episodes.items.map((episode, index) => index<5 &&(
-            <Link to={`/episode/${episode.id}`} key={episode.id} className="home_row_card">
+            <div onClick={()=>navigate(`/episode/${episode.id}`)} key={episode.id} className="home_row_card">
               <div className="home_row_card_img">
                {episode.images[0]?.url? <img src={episode && episode.images[0]?.url} alt="album" />: <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
               </div>
               <div className="home_row_card_name">
                 <h1>{episode.name}</h1>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>}

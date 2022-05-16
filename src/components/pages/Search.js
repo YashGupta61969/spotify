@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./search.css";
 import { useDataLayerValue } from "../../DataLayer";
 import SearchResult from "../SearchResult";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
   const [{ token, query }, dispatch] = useDataLayerValue();
+
+  const navigate = useNavigate();
   const [artist, setArtist] = useState([]);
   const [searchData, setSearchData] = useState("");
   const [category, setCategory] = useState("");
@@ -72,10 +74,10 @@ function Search() {
           {artist &&
             artist.map((art) => {
               return (
-                <Link to={`/artist/${art.id}`} key={art.id} className="search_top_card">
+                <div onClick={()=>navigate(`/artist/${art.id}`)} key={art.id} className="search_top_card">
                 <h1>{art.name}</h1>
                   <img src={art.images[0].url} alt="" />
-                </Link>
+                </div>
               );
             })}
         </div>
@@ -85,12 +87,12 @@ function Search() {
         <div className="categories">
         {
           category && category.map(cat=>(
-            <Link to={`category/${cat.id}`} key={cat.id} >
+            <div onClick={()=>navigate(`category/${cat.id}`)} key={cat.id} >
             <div className="category_box">
               <img src={cat.icons[0].url} alt="" />
               <h2>{cat.name}</h2>
             </div>
-            </Link>
+            </div>
           ))
         }
         </div>

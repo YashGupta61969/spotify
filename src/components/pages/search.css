@@ -207,6 +207,14 @@
     margin-bottom: 5px;
 }
 
+.search_artist p{
+    cursor: pointer;
+}
+
+.search_artist p:hover{
+    color: #e2e2e2;
+}
+
 .top_result_track_info{
     margin: 0 0 2rem 0;
     display: flex;
@@ -244,6 +252,11 @@
     align-items: center;
     justify-content: space-between;
     padding-right: 3rem;
+}
+
+.search_tracks_main_text h2{
+    color: #969696;
+    cursor: pointer;
 }
 
 .util2{
@@ -301,6 +314,11 @@
     font-size: 1.2rem;
     color: #8a8a8a;
     margin-right: 1rem;
+    cursor: pointer;
+}
+
+.search_result_track_info p:hover{
+    color: rgb(226, 226, 226);
 }
 
 .track_length p{
@@ -337,6 +355,31 @@
     }
     .category_box h2{
         font-size: 2rem;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .search_page{
+        padding-top: 10rem;
+    }
+
+    .search_page_top_row{
+        flex-direction: column;
+    }
+    
+    .top_result{
+        width: 100%;
+        padding-right: 3rem;
+    }
+
+    .top_result_card{
+        height: 50rem;
+    }
+
+    .search_tracks{
+        width: 100%;
+        padding-left: 1rem;
+        margin-top: 2.5rem;
     }
 }
 

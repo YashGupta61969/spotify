@@ -1,13 +1,9 @@
 import React,{useEffect, useState} from 'react'
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import './likedTracks.css'
-import { useDataLayerValue } from '../../DataLayer';
 import { Link, useParams } from 'react-router-dom';
 
 function PlaylistPage({token}) {
 
- const [{}, dispatch] = useDataLayerValue();
- const [artistId, setArtistId] = useState('')
  const [playlist, setPlaylist] = useState(undefined)
  const {id} = useParams();
  
@@ -23,14 +19,20 @@ function PlaylistPage({token}) {
             return resp.json();
           }).then(pl=>setPlaylist(pl))
         }    
-      },[]);
+      },[id]);
 
-      useEffect(()=>{
-        dispatch({
-          type:"SET_ARTISTID",
-          artistId:artistId
-      })
-      },[artistId])
+      function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+      }
+    
+      function convertMsToMinutesSeconds(milliseconds) {
+        const minutes = Math.floor(milliseconds / 60000);
+        const seconds = Math.round((milliseconds % 60000) / 1000);
+    
+        return seconds === 60
+          ? `${padTo2Digits(minutes + 1)}:00`
+          : `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
+      }
       
       return (
         <div className='playlists'>
@@ -47,16 +49,10 @@ function PlaylistPage({token}) {
         </div>
       </div>
 
-      <div className="play_all_btn_container">
-        <PlayCircleIcon
-          className="play_all_btn"
-          sx={{ fontSize: 70, color: "#1DB954" }}
-        />
-      </div>
-
       <div className="song_list">
         {playlist &&
           playlist.tracks.items.map((playlistSong) => {
+            console.log(playlistSong)
             return (
               <div key={playlistSong.track.id} className="song_row">
                 <div className="song_album_image">
@@ -64,9 +60,10 @@ function PlaylistPage({token}) {
                 </div>
                 <div className="song_title">
                   <h3>{playlistSong.track.name}</h3>
+                  <p className="liked_duration">{convertMsToMinutesSeconds(playlistSong.track.duration_ms)}</p>
                   <div className="liked_tracks_artists">
                     {playlistSong.track.artists.map((artist) => {
-                      return (<Link to={`/artist/${artist.id}`} onMouseOver={()=>setArtistId(artist.id)} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
+                      return (<Link to={`/artist/${artist.id}`} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
                     })}
                   </div>
                 </div>

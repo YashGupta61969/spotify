@@ -3,7 +3,6 @@
     height: 100%;
     background-image:linear-gradient(#003057,35%, black) ;
     overflow-y: auto;
-    padding-bottom: 5rem;
 }
 
 .playlists{
@@ -91,7 +90,7 @@
 
 .song_list{
     color: white;
-padding-bottom: 6rem;
+/* padding-bottom: 6rem; */
     margin-top: 3rem;
     padding-top: 1rem;
     background-image: linear-gradient(rgba(0, 0, 0, 0.150),rgba(0, 0, 0, 0.150));
@@ -203,6 +202,7 @@ padding-bottom: 6rem;
     }
     .song_list{
         margin: 0;
+        padding-bottom: 5rem;
     }
     .song_row{
         padding-left: 1.8rem;

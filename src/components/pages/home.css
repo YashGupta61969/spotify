@@ -156,6 +156,12 @@
     width: 60%;
 }
 
+@media screen and (max-width:1300px) and (min-width:701px) {
+    .see_all_div{
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+
 @media screen and (max-width:800px) {
     :root{
         font-size: 50%;
@@ -187,6 +193,12 @@
         margin-right: 1rem
     }
 } 
+
+@media screen and (max-width:700px) and (min-width:419px) {
+    .see_all_div{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
 
 @media screen and (max-width:420px) and (min-width:200px) {
     .home{
@@ -224,5 +236,8 @@
     }
     .home_row_card{
         height: 25rem;
+    }
+    .see_all_div{
+        grid-template-columns: repeat(2,1fr);
     }
 }

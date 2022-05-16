@@ -87,7 +87,7 @@ function Navbar() {
         </div>
         </>
         }
-
+        
         {toggle && (
           <div className="navbar_library">
             <Link className="navbar_library_container" to={"library"}>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 function LibraryArtists({token}) {
   const [artists, setArtists] = useState("");
-  const [artistId, setArtistId] = useState("");
 
   useEffect(() => {
     fetch("https://api.spotify.com/v1/me/following?type=artist", {
@@ -17,7 +16,7 @@ function LibraryArtists({token}) {
       })
       .then((data) => setArtists(data.artists.items));
 
-  },[artistId]);
+  },[]);
   return (
     <>
         <div className="see_all" style={{paddingBottom:'8rem'}}>

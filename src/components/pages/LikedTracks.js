@@ -24,16 +24,7 @@ function LikedTracks({token}) {
           return resp.json();
         })
         .then((data) =>setLikedTracks(data.items));
-
   }, []);
-
-  useEffect(()=>{
-    dispatch({
-        type:'SET_ARTISTID',
-        artistId:artistId
-    })
-  },[artistId])
-
 
   function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
@@ -48,7 +39,6 @@ function LikedTracks({token}) {
       : `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
   }
 
-  console.log(likedTracks)
   return (
     <div className="liked_tracks">
       <div className="liked_tracks_header">
@@ -76,7 +66,7 @@ function LikedTracks({token}) {
                   <p className="liked_duration">{convertMsToMinutesSeconds(likedTrack.track.duration_ms  )}</p>
                   <div className="liked_tracks_artists">
                     {likedTrack.track.artists.map((artist) => {
-                      return (<Link to={`/artist/${artist.id}`} onMouseOver={()=>setArtistId(artist.id)} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
+                      return (<Link to={`/artist/${artist.id}`} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
                     })}
                   </div>
                 </div>

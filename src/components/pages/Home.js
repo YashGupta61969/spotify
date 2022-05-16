@@ -8,9 +8,8 @@ import AlbumRow from "./AlbumRow";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const [{ token }, dispatch] = useDataLayerValue();
+  const [{ token }] = useDataLayerValue();
   const [date, setDate] = useState();
-  const [playlistId, setPlaylistId] = useState('');
   const [myPlaylists, setMyplaylists] = useState('');
   const [newReleases, setNewReleases] = useState([]);
   const [featuredPlaylist, setFeaturedPlaylist] = useState([]);
@@ -54,13 +53,6 @@ function Home() {
          getMyPlaylists();
 
       }, []);
-
-      useEffect(()=>{
-        dispatch({
-          type: 'SET_PLAYLISTID',
-          playlistId: playlistId
-        })
-      },[playlistId])
 
       useEffect(()=>{
 const greetings = ()=>{
