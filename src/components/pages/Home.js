@@ -8,11 +8,11 @@ import AlbumRow from "./AlbumRow";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const [{ token }] = useDataLayerValue();
+  const [{ token, myPlaylists }] = useDataLayerValue();
 
   const navigate = useNavigate();
   const [date, setDate] = useState();
-  const [myPlaylists, setMyplaylists] = useState('');
+  // const [myPlaylists, setMyplaylists] = useState('');
   const [newReleases, setNewReleases] = useState([]);
   const [featuredPlaylist, setFeaturedPlaylist] = useState([]);
 
@@ -40,20 +40,6 @@ function Home() {
           return resp.json();
         })
         .then((data) => setNewReleases(data.albums.items));
-
-
-        const getMyPlaylists = async ()=>{
-          let resp = await fetch("https://api.spotify.com/v1/me/playlists",{
-            method:'GET',
-            headers: {
-            "Authorization" : "Bearer " + token
-            } 
-          })
-          let data = await resp.json();
-          setMyplaylists(data.items);
-      }   
-         getMyPlaylists();
-
       }, []);
 
       useEffect(()=>{

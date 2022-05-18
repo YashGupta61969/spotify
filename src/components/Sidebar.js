@@ -13,16 +13,9 @@ import { useDataLayerValue } from '../DataLayer';
 
 function Sidebar({token}) {
 const [{screenSize, toggleSidebar}, dispatch] = useDataLayerValue();
-const [localValue, setLocalValue] = useState('');
 const [myPlaylists, setMyplaylists] = useState([]);
 
 
-useEffect(()=>{
-  dispatch({
-       type: 'SET_PLAYLISTID',
-       playlistId: localValue
-     })
-},[localValue])
 
 
 useEffect(()=>{
@@ -35,10 +28,16 @@ useEffect(()=>{
     })
     let data = await resp.json();
     setMyplaylists(data.items);
-}   
-   getMyPlaylists();
+  }   
+  getMyPlaylists();
 },[])
 
+useEffect(()=>{
+  dispatch({
+       type: 'SET_MYPLAYLISTS',
+       myPlaylists: myPlaylists
+     })
+},[myPlaylists])
 
   return (
     <>
@@ -85,9 +84,8 @@ useEffect(()=>{
    return (   
      
      <div key={playlist.id} className='sidebar_playlists'>
-      <Link onClick={()=>{setLocalValue(playlist.id)}} to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
+      <Link to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
     </div>
-
     )
   })
 }

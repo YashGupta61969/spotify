@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useDataLayerValue } from "../../DataLayer";
+
 
 function LibraryPlaylist({token}) {
 
+  const [{ myPlaylists }] = useDataLayerValue();
+
   const navigate = useNavigate();
   const [likedTracks,setLikedTracks] = useState("");
-  const [myPlaylists,setMyPlaylists] = useState("");
 
   useEffect(() => {
     const url = `https://api.spotify.com/v1/me/tracks?limit=50`;
@@ -20,19 +23,6 @@ function LibraryPlaylist({token}) {
           return resp.json();
         })
         .then((data) =>setLikedTracks(data.items.length));
-
-
-        const getMyPlaylists = async ()=>{
-          let resp = await fetch("https://api.spotify.com/v1/me/playlists",{
-            method:'GET',
-            headers: {
-            "Authorization" : "Bearer " + token
-            } 
-          })
-          let data = await resp.json();
-          setMyPlaylists(data.items);
-      }   
-         getMyPlaylists();
   }, []);
 
   return (

@@ -3,6 +3,7 @@ export const initialState = {
   transfer:null,
   screenSize:null,
   toggleSidebar:false,
+  myPlaylists:[],
   item: null,
   searchSong:null,
   toggle:false,
@@ -48,6 +49,12 @@ const reducer = (state, action) => {
               ...state,
               toggle: action.toggle,
               searchInp: action.searchInp
+            }
+
+          case 'SET_MYPLAYLISTS':
+            return{
+              ...state,
+              myPlaylists: action.myPlaylists,
             }
 
             case 'QUERY':
