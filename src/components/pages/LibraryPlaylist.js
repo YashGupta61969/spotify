@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function LibraryPlaylist({token}) {
 
+  const navigate = useNavigate();
   const [likedTracks,setLikedTracks] = useState("");
   const [myPlaylists,setMyPlaylists] = useState("");
 
@@ -41,14 +42,14 @@ function LibraryPlaylist({token}) {
          </div>
 
          <div className="library_container">
-         <Link to={'/likedtracks'} className="library_playlists_liked">
+         <div onClick={()=>navigate('/likedtracks')} className="library_playlists_liked">
              <h1>LIKED SONGS</h1>
              <p>{`${likedTracks} Songs`}</p>
-             </Link>
+             </div>
 
            {  myPlaylists && myPlaylists.map(playlist=>{
              return (
-                 <Link key={playlist.id} to={`/playlist/${playlist.id}`} >
+                 <div onClick={()=>navigate(`/playlist/${playlist.id}`)} key={playlist.id}>
                  <div className="home_row_card library_playlist_card" >
                 <div className="home_row_card_img">
                     <img src={playlist.images[0].url} alt="" />
@@ -58,7 +59,7 @@ function LibraryPlaylist({token}) {
                     </div>
 
                  </div>
-            </Link>
+            </div>
                
                )
             }) 

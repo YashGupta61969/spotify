@@ -1,9 +1,10 @@
 import React,{useEffect, useState} from 'react'
 import './likedTracks.css'
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function PlaylistPage({token}) {
 
+  const navigate = useNavigate();
  const [playlist, setPlaylist] = useState(undefined)
  const {id} = useParams();
  
@@ -52,7 +53,6 @@ function PlaylistPage({token}) {
       <div className="song_list">
         {playlist &&
           playlist.tracks.items.map((playlistSong) => {
-            console.log(playlistSong)
             return (
               <div key={playlistSong.track.id} className="song_row">
                 <div className="song_album_image">
@@ -63,7 +63,7 @@ function PlaylistPage({token}) {
                   <p className="liked_duration">{convertMsToMinutesSeconds(playlistSong.track.duration_ms)}</p>
                   <div className="liked_tracks_artists">
                     {playlistSong.track.artists.map((artist) => {
-                      return (<Link to={`/artist/${artist.id}`} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
+                      return (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
                     })}
                   </div>
                 </div>

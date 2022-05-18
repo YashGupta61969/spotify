@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import {useNavigate, useParams } from 'react-router-dom';
 
 function Show({ token }) {
   const [episode, setEpisode] = useState('');
   const [show, setShow] = useState('');
   const {id} = useParams()
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/shows/${id}`, {
@@ -55,7 +56,7 @@ function Show({ token }) {
       <div className="show_episodes">
         <h1>All Episodes</h1>
         {episode && episode.map(epi => (
-          <Link to={`/episode/${epi.id}`} key={epi.id} className="show_episode">
+          <div onClick={()=>navigate(`/episode/${epi.id}`)} key={epi.id} className="show_episode">
             <div className="show_episode_img">
               <img src={epi.images[0].url} alt="" />
             </div>
@@ -64,7 +65,7 @@ function Show({ token }) {
               <p>{`${epi.description.substring(0,220)}.....` }</p>
               <h2>{`${epi.release_date} ~ ${convertMsToMinutesSeconds(epi.duration_ms)} `}</h2>
             </div>
-          </Link>        
+          </div>        
         ))}
       </div>
       <div className="about_show">

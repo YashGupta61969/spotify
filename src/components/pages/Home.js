@@ -5,10 +5,12 @@ import "./home.css";
 import { useDataLayerValue } from "../../DataLayer";
 import HomeRow from "./HomeRow";
 import AlbumRow from "./AlbumRow";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [{ token }] = useDataLayerValue();
+
+  const navigate = useNavigate();
   const [date, setDate] = useState();
   const [myPlaylists, setMyplaylists] = useState('');
   const [newReleases, setNewReleases] = useState([]);
@@ -78,7 +80,7 @@ setDate(greetings());
       </div>
 
 <div className="home_main_cards">
-  <Link to={'likedtracks'} className="home_main_card">
+  <div onClick={()=>navigate('likedtracks')} className="home_main_card">
 
     <div className="home_main_card_liked">
     <FavoriteIcon sx={{ fontSize: 30, color:'white' }} />
@@ -87,38 +89,38 @@ setDate(greetings());
       <p>Liked Songs</p>
     </div>
 
-  </Link>
+  </div>
 
 
-  <Link to={'recently-played'} className="home_main_card">
+  <div  onClick={()=>navigate('recently-played')} className="home_main_card">
     <div className="home_main_card_liked">
     <MusicNoteIcon sx={{ fontSize: 30, color:'white' }} />
     </div>
     <div className="home_main_card_title">
       <p>Recently Played</p>
     </div>
-  </Link>
+  </div>
 
 
-  <Link to={'top-played'} className="home_main_card">
+  <div onClick={()=>navigate('top-played')} className="home_main_card">
     <div className="home_main_card_liked">
     <MusicNoteIcon sx={{ fontSize: 30, color:'white' }} />
     </div>
     <div className="home_main_card_title">
       <p>Top Played</p>
     </div>
-  </Link>
+  </div>
 
 {
   myPlaylists && myPlaylists.map((playlist, index)=> index < 3 &&(
-      <Link to={`playlist/${playlist.id}`} key={playlist.id} className="home_main_card">
+      <div onClick={()=>navigate(`playlist/${playlist.id}`)} key={playlist.id} className="home_main_card">
       <div className="home_main_card_liked">
       <img src={playlist.images[0].url} alt="" />
       </div>
       <div className="home_main_card_title">
         <p>{playlist.name}</p>
       </div>
-    </Link>
+    </div>
     )
   )
 }
@@ -128,7 +130,7 @@ setDate(greetings());
       <div className="home_row">
         <div className="home_row_heading">
           <h1>Recommended Playlists</h1>
-          <Link to={'recommended-playlists'}>SEE ALL</Link>
+          <h2 onClick={()=>navigate('recommended-playlists')}>SEE ALL</h2>
         </div>
         <div className="home_row_cards">
           <HomeRow featuredPl={featuredPlaylist} />
@@ -138,7 +140,7 @@ setDate(greetings());
       <div className="home_row">
         <div className="home_row_heading">
           <h1>New Releases</h1>
-          <Link to={'new-releases'}>SEE ALL</Link>
+          <h2 onClick={()=>navigate('new-releases')}>SEE ALL</h2>
         </div>
         <div className="home_row_cards">
           <AlbumRow albums={newReleases} />

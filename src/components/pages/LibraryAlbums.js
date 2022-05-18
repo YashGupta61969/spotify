@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 function LibraryAlbums({token}) {
 
+  const navigate = useNavigate();
  const [albums, setAlbums] = useState();
   useEffect(()=>{
    token && fetch("https://api.spotify.com/v1/me/albums", {
@@ -24,7 +25,7 @@ function LibraryAlbums({token}) {
         {
           albums && albums.map(album=>{
             return(
-              <Link key={album.album.id} to={`/album/${album.album.id}`}>
+              <div onClick={()=>navigate(`/album/${album.album.id}`)} key={album.album.id}>
               <div className="home_row_card library_playlist_card">
               <div className="home_row_card_img">
                 <img src={album.album.images[0].url} alt="album" />
@@ -35,7 +36,7 @@ function LibraryAlbums({token}) {
               </div>
 
             </div>
-            </Link>
+            </div>
               
             )
           })

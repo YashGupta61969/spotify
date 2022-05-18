@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 function AlbumPage({ token }) {
 
+  const navigate = useNavigate();
   const [album, setAlbum] = useState(undefined)
   const [albumTracks, setAlbumTracks] = useState([]);
   const { id } = useParams();
@@ -55,7 +56,7 @@ function AlbumPage({ token }) {
                 <h3>{track && track.name}</h3>
                 <div className="liked_tracks_artists">
                   {track && track?.artists.map((artist) => {
-                    return (<p key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
+                    return (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
                   })}
                 </div>
               </div>

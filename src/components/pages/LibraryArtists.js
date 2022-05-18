@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LibraryArtists({token}) {
+  const navigate = useNavigate();
   const [artists, setArtists] = useState("");
 
   useEffect(() => {
@@ -27,14 +28,14 @@ function LibraryArtists({token}) {
         {artists &&
           artists.map((artist) => {
             return (
-              <Link className="home_row_card" style={{marginTop:'2rem'}} to={`/artist/${artist.id}`} key={artist.id}>
+              <div onClick={()=>navigate(`/artist/${artist.id}`)} className="home_row_card" style={{marginTop:'2rem'}} key={artist.id}>
                 <div className="home_row_card_img">
                   <img src={artist.images[0].url} alt="" />
                 </div>
                 <div className="home_row_card_name">
                   <h1>{artist.name}</h1>
                 </div>
-              </Link>
+              </div>
             );
           })}
       </div>

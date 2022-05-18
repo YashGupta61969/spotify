@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PlaylistCard from './PlaylistCard';
 
 function SeeAll({token}) {
+  const navigate = useNavigate()
   const [playlists, setPlaylists] = useState([])
   useEffect(() => {
     if(token){
@@ -24,13 +25,13 @@ function SeeAll({token}) {
         <div className="see_all_div">
         {playlists &&
         playlists.map((playlist) => (
-            <Link
-              to={`/playlist/${playlist.id}`}
+            <div
+              onClick={()=>navigate(`/playlist/${playlist.id}`)}
               className="home_row_card margin_top"
               key={playlist.id}
             >
          <PlaylistCard playlist={playlist}/>
-            </Link>
+            </div>
           )
         )}
         </div>

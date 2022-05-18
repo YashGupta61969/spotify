@@ -1,12 +1,12 @@
 import React, {useEffect,useState} from 'react'
 import { useDataLayerValue } from '../../DataLayer';
 import MusicNoteIcon from "@mui/icons-material/FavoriteBorder";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 function RecentlyPlayed({token}) {
-    const[{user},dispatch] = useDataLayerValue();
-
+    const[{user}] = useDataLayerValue();
+    const navigate = useNavigate();
     const [recentlyPlayed, setRecentlyPlayed] = useState('');
 
 
@@ -23,10 +23,6 @@ function RecentlyPlayed({token}) {
         })
         .then((data) =>{
           setRecentlyPlayed(data.items)
-          dispatch({
-            type: 'RECENTLY_PLAYED',
-            recent: data.items[0].track
-          })
         });
     },[])
 
@@ -56,7 +52,7 @@ function RecentlyPlayed({token}) {
             <h3>{song?.track.name}</h3>
             <div className="liked_tracks_artists">
               {song?.track.artists.map((artist) => {
-                return (<Link to={`/artist/${artist.id}`} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
+                return (<div onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</div>);
               })}
             </div>
           </div>

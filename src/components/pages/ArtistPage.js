@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import "./artistPage.css";
-import { useDataLayerValue } from "../../DataLayer";
 
 function ArtistPage({ token }) {
   const {id} = useParams();
+  const navigate = useNavigate();
 
   const [tracks, setTracks] = useState("");
   const [artistAlbum, setArtistAlbum] = useState("");
@@ -21,7 +21,7 @@ function ArtistPage({ token }) {
       },
     })
       .then(resp=> resp.json()).then(data => setData(data))
-  }, [])
+  }, [id,token])
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/artists/${data.id}/top-tracks?market=ES`, {
@@ -54,7 +54,7 @@ function ArtistPage({ token }) {
     })
       .then((resp) => {
         return resp.json();
-      }).then(data => setRelatedArtist(data.artists))
+      }).then(data => setRelatedArtist(data.artists)).catch(err=>console.log(err))
   }, [data, token]);
 
 
@@ -95,7 +95,7 @@ function ArtistPage({ token }) {
                 <div className="search_result_track_info">
                   <div className="sample">
                     <h3>{track.name}</h3>
-                    <p>{track.artists.map((art, index) => index < 4 && (<span key={art.id}>{art.name}</span>))}</p>
+                    {track && track.artists.map((art, index) => index < 4 && (<p onClick={()=>navigate(`/artist/${art.id}`)} key={art.id}>{art.name}</p>))}
                   </div>
                   <div className="track_length">
                     <p>{convertMsToMinutesSeconds(track.duration_ms)}</p>
@@ -116,14 +116,14 @@ function ArtistPage({ token }) {
 
           {artistAlbum && artistAlbum.map((album) => (
 
-            <Link to={`/album/${album.id}`} key={album.id} className="home_row_card">
+            <div onClick={()=>navigate(`/album/${album.id}`)} key={album.id} className="home_row_card">
               <div className="home_row_card_img">
                 {album.images[0]?.url ? <img src={album && album.images[0]?.url} alt="album" /> : <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
               </div>
               <div className="home_row_card_name">
                 <h1>{album.name}</h1>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
@@ -137,7 +137,7 @@ function ArtistPage({ token }) {
         {relatedArtist &&
           relatedArtist.map((artist, index) => index < 5 && (
 
-            <div key={artist.id} className="home_row_card">
+            <div onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="home_row_card">
               <div className="home_row_card_img">
                 <img src={artist.images[0].url} alt="" />
               </div>

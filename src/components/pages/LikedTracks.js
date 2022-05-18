@@ -2,14 +2,14 @@ import React,{useEffect,useState} from "react";
 import "./likedTracks.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useDataLayerValue } from '../../DataLayer';
-import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 
 function LikedTracks({token}) {
 
   const[likedTracks,setLikedTracks] = useState([])
-  const[artistId,setArtistId] = useState('')
-  const [{user}, dispatch] = useDataLayerValue()
+  const navigate = useNavigate()
+  const [{user}] = useDataLayerValue()
 
   useEffect(() => {
     const url = `https://api.spotify.com/v1/me/tracks?limit=50`;
@@ -66,7 +66,7 @@ function LikedTracks({token}) {
                   <p className="liked_duration">{convertMsToMinutesSeconds(likedTrack.track.duration_ms  )}</p>
                   <div className="liked_tracks_artists">
                     {likedTrack.track.artists.map((artist) => {
-                      return (<Link to={`/artist/${artist.id}`} key={artist.id} className="liked_tracks_artist">{artist.name}</Link>);
+                      return (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
                     })}
                   </div>
                 </div>

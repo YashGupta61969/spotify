@@ -100,13 +100,13 @@
     margin-right: 1.2rem;
 } */
 
-.home_row_heading a{
+.home_row_heading h2{
     font-size: 1.4rem;
     color: rgb(107, 107, 107);
     cursor: pointer;
 }
 
-.home_row_heading a:hover{
+.home_row_heading h2:hover{
     color: white;
 }
 

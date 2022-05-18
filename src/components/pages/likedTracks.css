@@ -154,11 +154,11 @@
     display: flex;
 }
 
-.liked_tracks_artists a{
+.liked_tracks_artists p{
     margin-right: 1rem;
     color: rgb(185, 185, 185);
     word-spacing: -1px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-top: 2px;
 }
 

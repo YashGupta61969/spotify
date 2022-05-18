@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link,useParams } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import './categoryPage.css'
 
 function CategoryPage({token}) {
+
+  const navigate = useNavigate();
  const [playlist,setPlaylist] = useState('');
  const [CategoryName,setCategoryName] = useState('');
  const {id} = useParams();
@@ -38,14 +40,14 @@ function CategoryPage({token}) {
     <div className="category_playlists">
       {
         playlist && playlist.map((pl)=>(
-      <Link to={`/playlist/${pl.id}`} key={pl.id} className="home_row_card category_utility_margin">
+      <div onClick={()=>navigate(`/playlist/${pl.id}`)} key={pl.id} className="home_row_card category_utility_margin">
         <div className="home_row_card_img">
           <img src={pl.images[0].url} alt="" />
         </div>
         <div className="home_row_card_name">
           <h1>{pl.name}</h1>
         </div>
-      </Link>
+      </div>
         ))
       }
     </div>
