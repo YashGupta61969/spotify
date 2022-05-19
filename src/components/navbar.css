@@ -103,8 +103,21 @@
 
 .navbar_avatar{
     border-radius: 50%;
-    height: 100%;
+    /* background-color: aqua; */
+    width: 4.4rem;
+    height: 4.4rem;
 }
+
+.navbar_avatar .user_empty_avatar{
+    border-radius: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #424242;
+}
+
+
 
 .navbar_avatar img{
     height: 100%;

@@ -11,8 +11,6 @@ function Home() {
   const [{ token, myPlaylists }] = useDataLayerValue();
 
   const navigate = useNavigate();
-  const [date, setDate] = useState();
-  // const [myPlaylists, setMyplaylists] = useState('');
   const [newReleases, setNewReleases] = useState([]);
   const [featuredPlaylist, setFeaturedPlaylist] = useState([]);
 
@@ -42,27 +40,24 @@ function Home() {
         .then((data) => setNewReleases(data.albums.items));
       }, []);
 
-      useEffect(()=>{
 const greetings = ()=>{
   const date = new Date();
   const hours = date.getHours();
-  if(hours <= 5 && hours <= 0){
+  if(hours >= 0 && hours <= 6){
     return 'Night'
-  }else if(hours > 5 && hours < 12){
+  }else if(hours > 6 && hours < 12){
     return 'Morning'
-  }else if(hours > 12 && hours < 4){
+  }else if(hours > 12 && hours < 18){
     return 'Afternoon'
   }else{return 'Evening'}
 }
-setDate(greetings());
 
-  }, [date]);
 
   return (
     <div className="home">
 
       <div className="home_greeting">
-        <h1>Good {date}</h1>
+        <h1>Good {greetings()}</h1>
       </div>
 
 <div className="home_main_cards">

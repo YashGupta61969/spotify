@@ -22,6 +22,7 @@ function PlaylistPage({token}) {
         }    
       },[id]);
 
+
       function padTo2Digits(num) {
         return num.toString().padStart(2, '0');
       }
@@ -46,7 +47,7 @@ function PlaylistPage({token}) {
           <p>PLAYLIST</p>
           <h1>{playlist?.name}</h1>
           <p className='liked_tracks_playlist_description'>{playlist?.description}</p>
-          <p>{playlist?.owner.display_name} - {playlist?.tracks.items.length} Songs</p>
+          <p>{playlist?.owner.display_name} - {playlist?.tracks.items.length} Songs - {playlist?.followers.total} Likes </p>
         </div>
       </div>
 
@@ -62,9 +63,9 @@ function PlaylistPage({token}) {
                   <h3>{playlistSong.track.name}</h3>
                   <p className="liked_duration">{convertMsToMinutesSeconds(playlistSong.track.duration_ms)}</p>
                   <div className="liked_tracks_artists">
-                    {playlistSong.track.artists.map((artist) => {
-                      return (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
-                    })}
+                    {playlistSong.track.artists.map((artist, index) => 
+                      index < 3 && (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>)
+                    )}
                   </div>
                 </div>
               </div>

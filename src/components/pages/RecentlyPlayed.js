@@ -52,8 +52,8 @@ function RecentlyPlayed({token}) {
             <h3>{song?.track.name}</h3>
             <div className="liked_tracks_artists">
               {song?.track.artists.map((artist) => {
-                return (<div onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</div>);
-              })}
+                return (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
+              })} 
             </div>
           </div>
         </div>

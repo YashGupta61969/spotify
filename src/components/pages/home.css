@@ -36,7 +36,7 @@
 }
 
 .home_main_card{
-    height: 6.8rem;
+    height: 7.5rem;
     background-color: #303030;
     border-radius: 5px;
     align-items: center;
@@ -51,7 +51,7 @@
 
 .home_main_card_liked{
     height: 100%;
-    width: 6.9rem;
+    width: 7.5rem;
     border-radius: 5px 0 0 5px;
     display: grid;
     place-items: center;
@@ -60,7 +60,7 @@
 
 .home_main_card_liked img{
     border-radius: 5px 0 0 5px;
-    height: 6.9rem;
+    height: 7.5rem;
     object-fit: contain;
 }
 
@@ -134,12 +134,16 @@
     background-color: #2b2b2b;
 }
 
-/* .home_row_card_img{
-    height: 100%;
-} */
+.home_row_card_img{
+    box-shadow: 0 0 8px black;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    width: 17rem;
+}
 
 .home_row_card_img img{
-    width: 16rem;
+    width: 17rem;
     object-fit: contain;
 }
 
@@ -235,7 +239,7 @@
         margin-bottom: 6rem;
     }
     .home_row_card{
-        height: 25rem;
+        height: 28rem;
     }
     .see_all_div{
         grid-template-columns: repeat(2,1fr);

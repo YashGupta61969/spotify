@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./search.css";
 import { useDataLayerValue } from "../../DataLayer";
-import SearchResult from "../SearchResult";
+import SearchResult from "./SearchResult";
 import { useNavigate } from "react-router-dom";
 
 function Search() {

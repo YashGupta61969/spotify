@@ -2,10 +2,12 @@ import React,{useEffect,useState} from 'react'
 import { useDataLayerValue } from '../../DataLayer';
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import MusicNoteIcon from "@mui/icons-material/FavoriteBorder";
+import { useNavigate } from 'react-router-dom';
 
 
 function TopPlayed({token}) {
     const[{user}] = useDataLayerValue();
+    const navigate = useNavigate();
     const [myTop, setMyTop] = useState('');
 
     
@@ -56,7 +58,7 @@ function TopPlayed({token}) {
             <h3>{song && song.name}</h3>
             <div className="liked_tracks_artists">
               {song && song.artists.map((artist) => {
-                return (<p key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
+                return (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
               })}
             </div>
           </div>

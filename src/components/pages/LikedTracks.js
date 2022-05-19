@@ -65,9 +65,9 @@ function LikedTracks({token}) {
                   <h3>{likedTrack.track.name}</h3>
                   <p className="liked_duration">{convertMsToMinutesSeconds(likedTrack.track.duration_ms  )}</p>
                   <div className="liked_tracks_artists">
-                    {likedTrack.track.artists.map((artist) => {
-                      return (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>);
-                    })}
+                    {likedTrack.track.artists.map((artist, index) => 
+                     index < 3 && (<p onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="liked_tracks_artist">{artist.name}</p>)
+                    )}
                   </div>
                 </div>
               </div>

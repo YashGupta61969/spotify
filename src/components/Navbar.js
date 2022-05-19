@@ -8,6 +8,7 @@ import "./navbar.css";
 import { useDataLayerValue } from "../DataLayer";
 import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 
 function Navbar() {
@@ -115,7 +116,7 @@ function Navbar() {
 
       <div onClick={showUserOptions} className="navbar_user">
         <div className="navbar_avatar">
-          <img src={user && user.images[0].url} alt="" />
+          {user?.images.length ? <img src={user && user.images[0].url} alt="" /> : <div className="user_empty_avatar"><PermIdentityIcon sx={{ fontSize: 35 }} /></div>}
         </div>
         <div className="navbar_username">
           <h2>{user?.display_name}</h2>

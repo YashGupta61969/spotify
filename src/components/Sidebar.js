@@ -7,8 +7,6 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {Link} from 'react-router-dom' 
 import { useDataLayerValue } from '../DataLayer';
-// import MenuIcon from '@mui/icons-material/Menu';
-
 
 
 function Sidebar({token}) {
@@ -50,30 +48,30 @@ useEffect(()=>{
 
       <div className="sidebar_menu">
 
-        <div className="sidebar_menu_row">
-        <HomeIcon sx={{ fontSize: 30 }} />
-        <Link to='/'>Home</Link>
-        </div>
-        <div className="sidebar_menu_row">
-        <SearchIcon sx={{ fontSize: 30 }} />
-        <Link to={`search`}>Search</Link>
-        </div>
-        <div className="sidebar_menu_row">
-        <LibraryMusicIcon sx={{ fontSize: 30 }} />
-        <Link to='/library'>Library</Link>
-        </div>
+        <Link to='/' className="sidebar_menu_row">
+        <HomeIcon sx={{ fontSize: 32 }} />
+        <h2>Home</h2>
+        </Link>
+        <Link to={`search`} className="sidebar_menu_row">
+        <SearchIcon sx={{ fontSize: 32 }} />
+        <h2>Search</h2>
+        </Link>
+        <Link to='/library' className="sidebar_menu_row">
+        <LibraryMusicIcon sx={{ fontSize: 32 }} />
+        <h2>Library</h2>
+        </Link>
 
 
       </div>
       <div className="sidebar_menu">
       {/* <div className="sidebar_menu_row">
-        <AddBoxIcon sx={{ fontSize: 30 }} />
+        <AddBoxIcon sx={{ fontSize: 32 }} />
         <a href='/'>Create Playlist</a>
         </div> */}
-      <div className="sidebar_menu_row">
-        <FavoriteBorderIcon sx={{ fontSize: 30 }} />
-        <Link to='/likedtracks'>Liked Songs</Link>
-        </div>
+      <Link to='/likedtracks' className="sidebar_menu_row">
+        <FavoriteBorderIcon sx={{ fontSize: 32 }} />
+        <h2>Liked Songs</h2>
+        </Link>
       </div>
 
       <hr />
