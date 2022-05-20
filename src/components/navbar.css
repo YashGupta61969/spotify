@@ -117,8 +117,6 @@
     background-color: #424242;
 }
 
-
-
 .navbar_avatar img{
     height: 100%;
     border-radius: 50%;
@@ -221,6 +219,23 @@
     }
 }
 
+@media screen and (max-width:1000px) {
+    .navbar_library{
+        position: absolute;
+        z-index: -1;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: #000000;
+        justify-content: space-around;
+        padding: 1rem 0;
+    }
+
+    .navbar_library a{
+        background-color: #282828;
+    }
+}
 @media screen and (max-width:350px) {
     .navbar_username{
         display: none;

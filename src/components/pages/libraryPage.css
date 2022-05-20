@@ -27,6 +27,7 @@
 
 .library_head{
     margin-bottom: 2rem;
+    margin-left: 4rem;
 }
 
 .library_container{
@@ -39,7 +40,9 @@
 
 
 .library_playlists_liked{
-    width: 35%;
+    width: 50%;
+    min-width: 40rem;
+    height: 25rem;
     background-image: linear-gradient(145deg,rgb(0, 67, 212), rgb(128, 145, 179));
     border-radius: 0.6rem;
     display: flex;
@@ -50,10 +53,8 @@
     font-size: 2rem;
     box-shadow: 3px 5px 10px black;
     cursor: pointer;
-    grid-column-start: 0;
-    grid-column-end: 3;
-    margin-right: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
+    margin-left: 4rem;
 }
 
 
@@ -61,9 +62,17 @@
     transform: scale(1.01);
 }
 
+.library_playlist_row{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    width: 100%;
+    gap: 1rem;
+}
+
 .library_playlist_card{
     margin-right: 1.8rem;
 }
+
 
 .library_artist{
     background-color: #181818;
@@ -148,4 +157,17 @@
 
 .playlist_empty_text button:hover{
     text-decoration: underline;
+}
+
+@media screen and (max-width:1000px) {
+    .library_page{
+        margin-top: 5rem;
+        height: auto;
+    }
+    .library_playlist_row{
+        margin-bottom: 15rem;
+    }
+    .library_artist{
+        padding-bottom: 0;
+    }
 }

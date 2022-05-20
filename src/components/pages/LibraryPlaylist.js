@@ -37,10 +37,10 @@ function LibraryPlaylist({token}) {
              <p>{`${likedTracks} Songs`}</p>
              </div>
 
+             <div className="see_all_div">
            {  myPlaylists && myPlaylists.map(playlist=>{
              return (
-                 <div onClick={()=>navigate(`/playlist/${playlist.id}`)} key={playlist.id}>
-                 <div className="home_row_card library_playlist_card" >
+                 <div onClick={()=>navigate(`/playlist/${playlist.id}`)} className='home_row_card margin_top margin_left' key={playlist.id}>
                 <div className="home_row_card_img">
                     <img src={playlist.images[0].url} alt="" />
                     </div>
@@ -48,12 +48,10 @@ function LibraryPlaylist({token}) {
                     <h1>{playlist.name}</h1>
                     </div>
 
-                 </div>
             </div>
                
-               )
-            }) 
-}
+               )})}
+</div>
             </div>
          
     </div>

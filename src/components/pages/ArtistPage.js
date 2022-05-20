@@ -21,7 +21,7 @@ function ArtistPage({ token }) {
       },
     })
       .then(resp=> resp.json()).then(data => setData(data))
-  }, [id,token])
+  }, [id])
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/artists/${data.id}/top-tracks?market=ES`, {
@@ -45,8 +45,7 @@ function ArtistPage({ token }) {
         return resp.json();
       }).then(data => setArtistAlbum(data.items))
 
-
-    fetch(` https://api.spotify.com/v1/artists/${data.id}/related-artists`, {
+    fetch(`https://api.spotify.com/v1/artists/${data.id}/related-artists`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
@@ -55,7 +54,7 @@ function ArtistPage({ token }) {
       .then((resp) => {
         return resp.json();
       }).then(data => setRelatedArtist(data.artists)).catch(err=>console.log(err))
-  }, [data, token]);
+  }, [data]);
 
 
   function padTo2Digits(num) {
@@ -95,7 +94,9 @@ function ArtistPage({ token }) {
                 <div className="search_result_track_info">
                   <div className="sample">
                     <h3>{track.name}</h3>
-                    {track && track.artists.map((art, index) => index < 4 && (<p onClick={()=>navigate(`/artist/${art.id}`)} key={art.id}>{art.name}</p>))}
+                    <div className="liked_tracks_artists">
+                    {track && track.artists.map((art, index) => index < 4 && (<p className="liked_tracks_artist" onClick={()=>navigate(`/artist/${art.id}`)} key={art.id}>{art.name}</p>))}
+                    </div>
                   </div>
                   <div className="track_length">
                     <p>{convertMsToMinutesSeconds(track.duration_ms)}</p>
@@ -139,7 +140,7 @@ function ArtistPage({ token }) {
 
             <div onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="home_row_card">
               <div className="home_row_card_img">
-                <img src={artist.images[0].url} alt="" />
+               {artist?.images.length ? <img src={artist.images[0].url} alt="" /> : <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
               </div>
               <div className="home_row_card_name">
                 <h1>{artist.name}</h1>
