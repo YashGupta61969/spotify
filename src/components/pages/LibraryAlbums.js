@@ -15,18 +15,19 @@ function LibraryAlbums({token}) {
   },[])
 
   return (
-    <div className='library_main'>
-      <div className="library_head">
+    <div className='see_all'>
+      <div className="home_row">
+      <div className="home_row_heading">
         <h1>ALBUMS</h1>
       </div>
 
-      <div className="library_container">
+      <div className="see_all_div">
 
         {
           albums && albums.map(album=>{
             return(
               <div onClick={()=>navigate(`/album/${album.album.id}`)} key={album.album.id}>
-              <div className="home_row_card library_playlist_card">
+              <div className="home_row_card margin_top">
               <div className="home_row_card_img">
                 <img src={album.album.images[0].url} alt="album" />
               </div>
@@ -43,7 +44,7 @@ function LibraryAlbums({token}) {
         }
 
       </div>
-      
+      </div>
     </div>
   )
 }

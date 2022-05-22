@@ -13,9 +13,6 @@ function Sidebar({token}) {
 const [{screenSize, toggleSidebar}, dispatch] = useDataLayerValue();
 const [myPlaylists, setMyplaylists] = useState([]);
 
-
-
-
 useEffect(()=>{
   const getMyPlaylists = async ()=>{
     let resp = await fetch("https://api.spotify.com/v1/me/playlists",{

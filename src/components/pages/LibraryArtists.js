@@ -20,7 +20,7 @@ function LibraryArtists({token}) {
   },[]);
   return (
     <>
-        <div className="see_all" style={{paddingBottom:'8rem'}}>
+        <div className="see_all margin_left" style={{paddingBottom:'8rem'}}>
       <div className="home_row_heading" style={{marginBottom:'4rem'}}>
         <h1>ARTISTS</h1>
       </div>

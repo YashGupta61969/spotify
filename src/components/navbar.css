@@ -236,7 +236,10 @@
         background-color: #282828;
     }
 }
-@media screen and (max-width:350px) {
+@media screen and (max-width:400px) {
+    .navbar{
+        height: 8%;
+    }
     .navbar_username{
         display: none;
     }

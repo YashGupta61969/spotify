@@ -76,7 +76,7 @@ function SearchResult({ data }) {
       <div className="home_row">
         <div className="home_row_heading">
           <h1>ARTISTS</h1>
-          <p>SEE ALL</p>
+          <h2>SEE ALL</h2>
         </div>
         <div className="home_row_cards">
 
