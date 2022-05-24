@@ -22,6 +22,9 @@ import NewReleases from './pages/NewReleases';
 import SearchTracks from "./pages/SearchTracks";
 import EpisodePage from "./pages/EpisodePage";
 import Show from "./pages/Show";
+import SeeAllPlaylists from "./pages/SeeAllPlaylists";
+import SeeAllArtist from "./pages/SeeAllArtist";
+import SeeAllEpisodes from "./pages/SeeAllEpisodes";
 
 
 function Main() {
@@ -79,6 +82,18 @@ function Main() {
           <Route
             path={`search/search-results`}
             element={<SearchTracks token={token} />}
+          />
+          <Route
+            path={`search/playlists`}
+            element={<SeeAllPlaylists/>}
+          />
+          <Route
+            path={`search/artists`}
+            element={<SeeAllArtist/>}
+          />
+          <Route
+            path={`search/episodes`}
+            element={<SeeAllEpisodes/>}
           />
 
           <Route

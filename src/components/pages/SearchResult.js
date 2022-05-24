@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import {useNavigate } from "react-router-dom";
+import { useDataLayerValue } from "../../DataLayer";
+
 
 function SearchResult({ data }) {
-
+  const [{},dispatch] = useDataLayerValue();
   const navigate = useNavigate();
 
   function padTo2Digits(num) {
@@ -19,6 +21,12 @@ function SearchResult({ data }) {
       : `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
   }
 
+  useEffect(()=>{
+    dispatch({
+      type:'SET_SEARCH_ITEMS',
+      item:data
+    })
+  },[data])
   return (
     <div className="result_page">
       <div className="search_page_top_row">
@@ -76,7 +84,7 @@ function SearchResult({ data }) {
       <div className="home_row">
         <div className="home_row_heading">
           <h1>ARTISTS</h1>
-          <h2>SEE ALL</h2>
+          <h2 onClick={()=>navigate('/search/artists')}>SEE ALL</h2>
         </div>
         <div className="home_row_cards">
 
@@ -98,7 +106,7 @@ function SearchResult({ data }) {
       <div className="home_row">
         <div className="home_row_heading">
           <h1>PLAYLISTS</h1>
-          <p>SEE ALL</p>
+          <h2 onClick={()=>navigate('/search/playlists')}>SEE ALL</h2>
         </div>
         <div className="home_row_cards">
 
@@ -121,7 +129,7 @@ function SearchResult({ data }) {
      { data && data.episodes.items.length!==0 && <div className="home_row">
         <div className="home_row_heading">
           <h1>Episodes</h1>
-          <p>SEE ALL</p>
+          <h2 onClick={()=>navigate('/search/episodes')}>SEE ALL</h2>
         </div>
         <div className="home_row_cards">
 

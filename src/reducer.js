@@ -20,6 +20,12 @@ const reducer = (state, action) => {
         user: action.user,
       };
 
+    case "SET_SEARCH_ITEMS":
+      return {
+        ...state,
+        item: action.item,
+      };
+
     case "SET_TOKEN":
       return {
         ...state,
