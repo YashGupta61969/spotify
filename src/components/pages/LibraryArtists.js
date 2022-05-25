@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+
 
 function LibraryArtists({token}) {
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ function LibraryArtists({token}) {
             return (
               <div onClick={()=>navigate(`/artist/${artist.id}`)} className="home_row_card" style={{marginTop:'2rem'}} key={artist.id}>
                 <div className="home_row_card_img">
-                  <img src={artist.images[0].url} alt="" />
+                {artist.images[0]?.url? <img src={artist && artist.images[0]?.url} alt="album" />: <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
                 </div>
                 <div className="home_row_card_name">
                   <h1>{artist.name}</h1>

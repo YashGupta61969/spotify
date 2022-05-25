@@ -4,7 +4,7 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import "./artistPage.css";
 
 function ArtistPage({ token }) {
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [tracks, setTracks] = useState("");
@@ -20,7 +20,7 @@ function ArtistPage({ token }) {
         Authorization: "Bearer " + token,
       },
     })
-      .then(resp=> resp.json()).then(data => setData(data))
+      .then(resp => resp.json()).then(data => setData(data))
   }, [id])
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function ArtistPage({ token }) {
     })
       .then((resp) => {
         return resp.json();
-      }).then(data => setRelatedArtist(data.artists)).catch(err=>console.log(err))
+      }).then(data => setRelatedArtist(data.artists)).catch(err => console.log(err))
   }, [data]);
 
 
@@ -69,11 +69,12 @@ function ArtistPage({ token }) {
       ? `${padTo2Digits(minutes + 1)}:00`
       : `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
   }
+
   return (
     <div className="playlists">
       <div className="liked_tracks_header">
         <div className="artist_page_dp">
-          <img src={data && data.images[0].url} alt="" />
+          {data?.images?.length ? <img src={data.images[0].url} alt="" /> : <div className="artist_alt_avatar"><PermIdentityIcon sx={{ fontSize: 145 }} /></div>}
         </div>
         <div className="liked_tracks_header_text">
           <p>ARTIST</p>
@@ -82,7 +83,7 @@ function ArtistPage({ token }) {
         </div>
       </div>
 
-      <div className="search_result_tracks_column padding_left">
+      {tracks?.length && <div className="search_result_tracks_column padding_left">
         <h1>Popular</h1>
         {
           tracks && tracks.map((track, index) => index < 5 && (
@@ -95,7 +96,7 @@ function ArtistPage({ token }) {
                   <div className="sample">
                     <h3>{track.name}</h3>
                     <div className="liked_tracks_artists">
-                    {track && track.artists.map((art, index) => index < 4 && (<p className="liked_tracks_artist" onClick={()=>navigate(`/artist/${art.id}`)} key={art.id}>{art.name}</p>))}
+                      {track && track.artists.map((art, index) => index < 4 && (<p className="liked_tracks_artist" onClick={() => navigate(`/artist/${art.id}`)} key={art.id}>{art.name}</p>))}
                     </div>
                   </div>
                   <div className="track_length">
@@ -106,9 +107,9 @@ function ArtistPage({ token }) {
             </div>
           ))
         }
-      </div>
+      </div>}
 
-      <div className="home_row margin_top">
+      {artistAlbum?.length && <div className="home_row margin_top">
         <div className="home_row_heading">
           <h1>ALBUMS</h1>
           <p>SEE ALL</p>
@@ -117,7 +118,7 @@ function ArtistPage({ token }) {
 
           {artistAlbum && artistAlbum.map((album) => (
 
-            <div onClick={()=>navigate(`/album/${album.id}`)} key={album.id} className="home_row_card">
+            <div onClick={() => navigate(`/album/${album.id}`)} key={album.id} className="home_row_card">
               <div className="home_row_card_img">
                 {album.images[0]?.url ? <img src={album && album.images[0]?.url} alt="album" /> : <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
               </div>
@@ -127,30 +128,30 @@ function ArtistPage({ token }) {
             </div>
           ))}
         </div>
-      </div>
+      </div>}
 
 
-      <div className="home_row">
+      {relatedArtist?.length && <div className="home_row">
         <div className="home_row_heading">
-        <h1>Related Artists</h1>
-           </div>
-      <div className="home_row_cards">
-        {relatedArtist &&
-          relatedArtist.map((artist, index) => index < 5 && (
+          <h1>Related Artists</h1>
+        </div>
+        <div className="home_row_cards">
+          {relatedArtist &&
+            relatedArtist.map((artist, index) => index < 5 && (
 
-            <div onClick={()=>navigate(`/artist/${artist.id}`)} key={artist.id} className="home_row_card">
-              <div className="home_row_card_img">
-               {artist?.images.length ? <img src={artist.images[0].url} alt="" /> : <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
+              <div onClick={() => navigate(`/artist/${artist.id}`)} key={artist.id} className="home_row_card">
+                <div className="home_row_card_img">
+                  {artist?.images.length ? <img src={artist.images[0].url} alt="" /> : <div className="img_avatar"><PermIdentityIcon className="alt_avatar" sx={{ fontSize: 115 }} /></div>}
+                </div>
+                <div className="home_row_card_name">
+                  <h1>{artist.name}</h1>
+                </div>
               </div>
-              <div className="home_row_card_name">
-                <h1>{artist.name}</h1>
-              </div>
-            </div>
 
-)
-)}
-</div>
-      </div>
+            )
+            )}
+        </div>
+      </div>}
 
     </div>
   );

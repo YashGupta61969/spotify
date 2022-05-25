@@ -161,6 +161,7 @@
     overflow-y: auto;
     padding-bottom: 2rem;
     width: 100%;
+    position: relative;
 }
 
 .result_page::-webkit-scrollbar{
@@ -323,16 +324,46 @@
 
 .track_length p{
     font-size: 1.4rem;
+    color: #8a8a8a;
+    cursor: unset;
+}
+
+.track_length p:hover{
+    color: #8a8a8a;
 }
 
 
 .img_avatar{
-    width: 16rem;
+    width: 100%;
     height: 16rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(80, 80, 80);
+}
+
+.search_empty_message{
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search_empty_message h1{
+    color: white;
+    font-size: 3.4rem;
+}
+
+.search_empty_message p{
+    color: #afafaf;
+    font-size: 2rem;
+    margin-top: 1rem;
 }
 
 @media (max-width:800px)  {

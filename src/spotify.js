@@ -12,8 +12,8 @@
     "playlist-read-private"
   ]
   
-  // const redirectUri = "http://localhost:3000/"
-  const redirectUri = "https://spotify-clone-69.netlify.app/"
+  const redirectUri = "http://localhost:3000/"
+  // const redirectUri = "https://spotify-clone-69.netlify.app/"
 
   export const loginUrl = `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_KEY}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`
 

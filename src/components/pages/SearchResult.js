@@ -4,7 +4,7 @@ import {useNavigate } from "react-router-dom";
 import { useDataLayerValue } from "../../DataLayer";
 
 
-function SearchResult({ data }) {
+function SearchResult({ data, query }) {
   const [{},dispatch] = useDataLayerValue();
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ function SearchResult({ data }) {
   return (
     <div className="result_page">
       <div className="search_page_top_row">
-        <div className="top_result">
+       { data.tracks.items.length && <div className="top_result">
           <h1>Top Result</h1>
           <div className="top_result_card">
             <div className="top_result_img">
@@ -50,9 +50,9 @@ function SearchResult({ data }) {
 
             </div>
           </div>
-        </div>
+        </div>}
 
-        <div className="search_tracks">
+        {data.tracks.items.length && <div className="search_tracks">
           <div className="search_tracks_main_text">
             <h1>Songs</h1>
             <h2 onClick={()=>navigate('search-results')}>SEE ALL</h2>
@@ -79,9 +79,9 @@ function SearchResult({ data }) {
               ))
             }
           </div>
-        </div>
+        </div>}
       </div>
-      <div className="home_row">
+     {data?.artists.items.length && <div className="home_row">
         <div className="home_row_heading">
           <h1>ARTISTS</h1>
           <h2 onClick={()=>navigate('/search/artists')}>SEE ALL</h2>
@@ -101,9 +101,9 @@ function SearchResult({ data }) {
             </div>
           ))}
         </div>
-      </div>
+      </div>}
 
-      <div className="home_row">
+     {data?.playlists.items.length && <div className="home_row">
         <div className="home_row_heading">
           <h1>PLAYLISTS</h1>
           <h2 onClick={()=>navigate('/search/playlists')}>SEE ALL</h2>
@@ -124,9 +124,9 @@ function SearchResult({ data }) {
           ))}
         </div>
       </div>
+}
 
-
-     { data && data.episodes.items.length!==0 && <div className="home_row">
+     {data.episodes.items.length!==0 && <div className="home_row">
         <div className="home_row_heading">
           <h1>Episodes</h1>
           <h2 onClick={()=>navigate('/search/episodes')}>SEE ALL</h2>
@@ -145,6 +145,13 @@ function SearchResult({ data }) {
           ))}
         </div>
       </div>}
+
+
+{!data.episodes.items.length && !data?.playlists.items.length && !data?.artists.items.length && !data.tracks.items.length && <div className="search_empty_message">
+            <h1> No results found for "{query}"</h1>
+            <p>Please make sure your words are spelled correctly or use less or different keywords.</p>
+</div>}
+
     </div>
   );
 }

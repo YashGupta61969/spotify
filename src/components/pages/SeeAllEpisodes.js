@@ -11,21 +11,21 @@ function SeeAllPlaylists() {
     <div className='see_all'>
       <div className="home_row">
           <div className="home_row_heading">
-              <h1>Artists</h1>
+              <h1>Episodes</h1>
           </div>
           <div className="see_all_div">
               {item &&
-        item.episodes.items.map((artist) => (
+        item.episodes.items.map((episode) => (
             <div
-              onClick={()=>navigate(`/artist/${artist.id}`)}
+              onClick={()=>navigate(`/episode/${episode.id}`)}
               className="home_row_card margin_top"
-              key={artist.id}
+              key={episode.id}
             >
         <div className="home_row_card_img">
-        {artist?.images.length ? <img src={artist && artist.images[0].url} alt="" /> : <div className="img_avatar"><PermIdentityIcon sx={{ fontSize: 115 }} /></div>}
+        {episode?.images.length ? <img src={episode && episode.images[0].url} alt="" /> : <div className="img_avatar"><PermIdentityIcon sx={{ fontSize: 115 }} /></div>}
                 </div>
                 <div className="home_row_card_name">
-                  <h1>{artist?.name}</h1>
+                  <h1>{episode?.name}</h1>
                 </div>
             </div>
           )

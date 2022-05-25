@@ -99,7 +99,7 @@ function Search() {
 
        
       </div>
-      </>):<SearchResult data={searchData}/>}
+      </>):<SearchResult data={searchData} query={query}/>}
 
     
     </div>
