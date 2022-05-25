@@ -75,7 +75,7 @@ useEffect(()=>{
 
       <div className="sidebar_menu">
 {
- myPlaylists && myPlaylists.map(playlist =>{
+ myPlaylists.length && myPlaylists.map(playlist =>{
    return (   
      
      <div key={playlist.id} className='sidebar_playlists'>

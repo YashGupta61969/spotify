@@ -16,15 +16,14 @@ function LibraryAlbums({token}) {
 
   return (
     <div className='see_all'>
-      <div className="home_row">
+      { albums?.length ? <div className="home_row">
       <div className="home_row_heading">
         <h1>ALBUMS</h1>
       </div>
 
       <div className="see_all_div">
 
-        {
-          albums && albums.map(album=>{
+        { albums.map(album=>{
             return(
               <div onClick={()=>navigate(`/album/${album.album.id}`)} key={album.album.id}>
               <div className="home_row_card margin_top">
@@ -44,7 +43,9 @@ function LibraryAlbums({token}) {
         }
 
       </div>
-      </div>
+      </div>:<div className="search_empty_message">
+            <h1>You have'nt added any Albums to your Library</h1>
+</div>}
     </div>
   )
 }

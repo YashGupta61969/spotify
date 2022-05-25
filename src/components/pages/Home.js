@@ -93,7 +93,7 @@ const greetings = ()=>{
   </div>
 
 {
-  myPlaylists && myPlaylists.map((playlist, index)=> index < 3 &&(
+  myPlaylists.length && myPlaylists.map((playlist, index)=> index < 3 &&(
       <div onClick={()=>navigate(`playlist/${playlist.id}`)} key={playlist.id} className="home_main_card">
       <div className="home_main_card_liked">
       <img src={playlist.images[0].url} alt="" />

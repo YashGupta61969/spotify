@@ -38,7 +38,7 @@ function LibraryPlaylist({token}) {
              </div>
 
              <div style={{marginLeft:'2rem'}} className={`see_all_div ${window.innerWidth >= 800 && 'home_row -margin_left'}`}>
-           {  myPlaylists && myPlaylists.map(playlist=>{
+           {  myPlaylists.length && myPlaylists.map(playlist=>{
              return (
                  <div style={{marginTop:'2rem'}} onClick={()=>navigate(`/playlist/${playlist.id}`)} className='home_row_card' key={playlist.id}>
                 <div className="home_row_card_img">

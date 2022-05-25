@@ -22,13 +22,12 @@ function LibraryArtists({token}) {
   },[]);
   return (
     <>
-        <div className="see_all margin_left" style={{paddingBottom:'8rem'}}>
+        { artists?.length ? <div className="see_all margin_left" style={{paddingBottom:'8rem'}}>
       <div className="home_row_heading" style={{marginBottom:'4rem'}}>
         <h1>ARTISTS</h1>
       </div>
       <div className="see_all_div">
-        {artists &&
-          artists.map((artist) => {
+        {  artists.map((artist) => {
             return (
               <div onClick={()=>navigate(`/artist/${artist.id}`)} className="home_row_card" style={{marginTop:'2rem'}} key={artist.id}>
                 <div className="home_row_card_img">
@@ -41,7 +40,9 @@ function LibraryArtists({token}) {
             );
           })}
       </div>
-    </div>
+    </div> : <div className="search_empty_message">
+            <h1>You have'nt added any Artists to your Library</h1>
+</div>}
     </>
   );
 }
