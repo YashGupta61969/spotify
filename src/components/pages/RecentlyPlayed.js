@@ -40,9 +40,8 @@ function RecentlyPlayed({token}) {
   </div>
 </div>
 
-<div className="song_list">
-  {recentlyPlayed &&
-    recentlyPlayed.map((song, index) => {
+{recentlyPlayed?.length ? <div className="song_list">
+  {recentlyPlayed.map((song, index) => {
       return (
         <div key={`${song?.track.id}${index}`} className="song_row">
           <div className="song_album_image">
@@ -59,7 +58,9 @@ function RecentlyPlayed({token}) {
         </div>
       );
     })}
-</div>
+</div>:<div className="search_empty_message">
+            <h1>You have'nt played any songs yet</h1>
+</div>}
 </div>
   )
 }

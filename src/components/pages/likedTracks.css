@@ -3,12 +3,14 @@
     height: 100%;
     background-image:linear-gradient(#003057,35%, black) ;
     overflow-y: auto;
+    padding-bottom: 6rem;
 }
 
 .playlists{
     width: 100%;
     height: 100%;
     overflow-y: auto;
+    padding-bottom: 6rem;
     /* margin-bottom: 2rem; */
     /* padding-top: 5rem; */
     /* margin-top: -5rem; */
@@ -210,7 +212,7 @@
         justify-content: center;
     }
     .liked_tracks_header_text :nth-child(1){
-        display: none;
+        margin-bottom: 1.5rem;
     }
     .liked_tracks_header_text :nth-child(3){
         text-align: center;

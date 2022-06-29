@@ -46,9 +46,8 @@ function TopPlayed({token}) {
   />
 </div>
 
-<div className="song_list">
-  {myTop &&
-    myTop.map((song) => {
+{myTop?.length ? <div className="song_list">
+  { myTop.map((song) => {
       return (
         <div key={song && song.id} className="song_row">
           <div className="song_album_image">
@@ -65,7 +64,9 @@ function TopPlayed({token}) {
         </div>
       );
     })}
-</div>
+</div>:<div className="search_empty_message">
+            <h1>You have'nt played any songs yet</h1>
+</div>}
 </div>
   )
 }

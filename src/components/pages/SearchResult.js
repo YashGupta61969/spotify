@@ -30,7 +30,7 @@ function SearchResult({ data, query }) {
   return (
     <div className="result_page">
       <div className="search_page_top_row">
-       { data.tracks.items.length && <div className="top_result">
+       {data.tracks.items.length && <div className="top_result">
           <h1>Top Result</h1>
           <div className="top_result_card">
             <div className="top_result_img">

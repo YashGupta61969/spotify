@@ -53,9 +53,8 @@ function LikedTracks({token}) {
         </div>
       </div>
 
-      <div className="song_list">
-        {likedTracks &&
-          likedTracks.map((likedTrack) => {
+      {likedTracks?.length ? <div className="song_list">
+        {likedTracks.map((likedTrack) => {
             return (
               <div key={likedTrack.track.id} className="song_row">
                 <div className="song_album_image">
@@ -73,7 +72,9 @@ function LikedTracks({token}) {
               </div>
             );
           })}
-      </div>
+      </div>:<div className="search_empty_message">
+            <h1>You have'nt liked any songs yet</h1>
+</div>}
     </div>
   );
 }

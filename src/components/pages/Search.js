@@ -99,7 +99,7 @@ function Search() {
 
        
       </div>
-      </>):<SearchResult data={searchData} query={query}/>}
+      </>):searchData && <SearchResult data={searchData} query={query}/>}
 
     
     </div>
